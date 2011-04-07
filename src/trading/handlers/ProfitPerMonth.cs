@@ -43,5 +43,16 @@ namespace org.ontslab.trading.handlers
 		public Bar getLastExitBar() {
 			return lastExit;
 		}
+		
+		public List<double> getProfitPerMonthsList() {
+			List<double> profitList = new List<double>();
+			IEnumerator<double> iter = profitPerMonth.Values.GetEnumerator();
+			
+			while (iter.MoveNext()) {
+				profitList.Add(iter.Current);
+			};
+			
+			return profitList;
+		}
 	}
 }

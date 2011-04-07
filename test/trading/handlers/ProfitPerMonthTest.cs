@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Mocks;
 using org.ontslab.trading.handlers;
@@ -55,6 +56,30 @@ namespace org.ontslab.test.trading.handlers {
 			pnl.handleBar(bar);
 			
 			Assert.AreEqual(expectedExitBar, pnl.getLastExitBar());
+		}
+		
+		[Test]
+		public void testGetProfitPerList() {
+			Bar expectedExitBar = new Bar(
+				0x000000,
+				new DateTime(2011, 2, 1),
+				100,
+				105,
+				99,
+				99,
+				1
+			);
+			positionMock.SetReturnValue("get_ExitBar", expectedExitBar);
+			positionMock.ExpectAndReturn("Profit", 100.0);
+			
+			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
+			ProfitPerMonth pnl = new ProfitPerMonth((ISecurity)sourceMock.MockInstance);
+			pnl.handleBar(bar);
+			
+			List<double> actual = pnl.getProfitPerMonthsList();
+			
+			Assert.AreEqual(1, actual.Count);
+			Assert.AreEqual(100.0d, actual.Find( p => true));
 		}
 	}
 }
