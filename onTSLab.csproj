@@ -62,9 +62,12 @@
     <Compile Include="src\trading\handlers\BarHandlers.cs" />
     <Compile Include="src\trading\handlers\CompositeBarHandler.cs" />
     <Compile Include="src\trading\handlers\ProfitPerMonth.cs" />
+    <Compile Include="src\trading\position\AbsoluteStopLoss.cs" />
     <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />
+    <Compile Include="src\trading\position\FloatingStopLoss.cs" />
     <Compile Include="src\trading\position\PositionCalculator.cs" />
     <Compile Include="src\trading\position\Positions.cs" />
+    <Compile Include="src\trading\position\StopLoss.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
   </ItemGroup>
   <ItemGroup>
