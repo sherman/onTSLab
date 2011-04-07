@@ -45,6 +45,9 @@
     <Reference Include="TSLab.Script">
       <HintPath>..\..\..\..\TSLab\TSLab.Script.dll</HintPath>
     </Reference>
+    <Reference Include="TSLab.ScriptEngine">
+      <HintPath>..\..\..\..\TSLab\TSLab.ScriptEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\signal\Signals.cs" />
@@ -53,11 +56,14 @@
     <Compile Include="src\trading\handlers\BarHandlers.cs" />
     <Compile Include="src\trading\handlers\CompositeBarHandler.cs" />
     <Compile Include="src\trading\handlers\ProfitPerMonth.cs" />
+    <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />
+    <Compile Include="src\trading\position\PositionCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\trading" />
     <Folder Include="src" />
     <Folder Include="src\signal" />
     <Folder Include="src\trading\handlers" />
+    <Folder Include="src\trading\position" />
   </ItemGroup>
 </Project>
