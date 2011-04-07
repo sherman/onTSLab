@@ -76,7 +76,7 @@ namespace org.ontslab.test.trading.handlers {
 			ProfitPerMonth pnl = new ProfitPerMonth((ISecurity)sourceMock.MockInstance);
 			pnl.handleBar(bar);
 			
-			List<double> actual = pnl.getProfitPerMonthsList();
+			List<double> actual = pnl.getProfitPerMonthList();
 			
 			Assert.AreEqual(1, actual.Count);
 			Assert.AreEqual(100.0d, actual.Find( p => true));
