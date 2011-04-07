@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\signal\Signals.cs" />
+    <Compile Include="src\testing\PnLReport.cs" />
     <Compile Include="src\trading\handlers\BarHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\trading\handlers\BarHandlers.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\testing" />
     <Folder Include="test" />
     <Folder Include="src\trading" />
     <Folder Include="src" />
