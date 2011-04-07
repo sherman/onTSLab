@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: Sherminator
  * Date: 07.04.2011
- * Time: 17:13
+ * Time: 17:27
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -12,28 +12,28 @@ using org.ontslab.signal;
 
 namespace org.ontslab.trading.position {
 	/// <summary>
-	/// Description of AbsoluteStopLoss.
+	/// Description of AbsoluteTakeProfit.
 	/// </summary>
-	public class AbsoluteStopLoss : StopLoss {
-		private double maxLoss;
+	public class AbsoluteTakeProfit : TakeProfit {
+		private double maxProfit;
 		
-		public AbsoluteStopLoss(double maxLoss) {
-			this.maxLoss = maxLoss;
+		public AbsoluteTakeProfit(double pmaxProfitrofit) {
+			this.maxProfit = maxProfit;
 		}
 		
 		public void createOn(IPosition position, int barIndex) {
-			double stopLossPrice = 0.0;
-						
+			double profitPrice = 0.0;
+			
 			if (position.IsShort) {
-				stopLossPrice = position.EntryPrice + maxLoss;
+				profitPrice = position.EntryPrice - maxProfit;
 			} else {
-				stopLossPrice = position.EntryPrice - maxLoss;
+				profitPrice = position.EntryPrice + maxProfit;
 			}
 			
-			position.CloseAtStop(
+			position.CloseAtProfit(
 				barIndex,
-				stopLossPrice,
-				Signals.STOP_LOSS_CLOSE
+				profitPrice,
+				Signals.TAKE_PROFIT_CLOSE
 			);
 		}
 	}
