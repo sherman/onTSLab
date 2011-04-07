@@ -39,17 +39,23 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TSLab.DataSource">
+      <HintPath>..\..\..\..\TSLab\TSLab.DataSource.dll</HintPath>
+    </Reference>
+    <Reference Include="TSLab.Script">
+      <HintPath>..\..\..\..\TSLab\TSLab.Script.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\signal\Signals.cs" />
-    <Compile Include="finance\trading\handlers\BarHandler.cs" />
+    <Compile Include="src\trading\handlers\BarHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\trading\handlers\CompositeBarHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="finance" />
-    <Folder Include="finance\trading" />
+    <Folder Include="src\trading" />
     <Folder Include="src" />
     <Folder Include="src\signal" />
-    <Folder Include="finance\trading\handlers" />
+    <Folder Include="src\trading\handlers" />
   </ItemGroup>
 </Project>
