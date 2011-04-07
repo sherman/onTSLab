@@ -17,7 +17,7 @@ namespace org.ontslab.trading.position {
 	public class AbsoluteTakeProfit : TakeProfit {
 		private double maxProfit;
 		
-		public AbsoluteTakeProfit(double pmaxProfitrofit) {
+		public AbsoluteTakeProfit(double maxProfit) {
 			this.maxProfit = maxProfit;
 		}
 		
