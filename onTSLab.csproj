@@ -58,6 +58,7 @@
     <Compile Include="src\trading\handlers\ProfitPerMonth.cs" />
     <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />
     <Compile Include="src\trading\position\PositionCalculator.cs" />
+    <Compile Include="src\trading\position\Positions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\trading" />
