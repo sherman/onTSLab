@@ -15,7 +15,7 @@ namespace org.ontslab.trading.handlers
 	/// <summary>
 	/// Description of ProfitPerMonth.
 	/// </summary>
-	public class ProfitPerMonth {
+	public class ProfitPerMonth : BarHandler {
 		private ISecurity source;
 		
 		private IDictionary<string, double> profitPerMonth =

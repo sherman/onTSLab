@@ -17,10 +17,4 @@ namespace org.ontslab.trading.handlers
 	public interface BarHandler {
 		void handleBar(Bar bar);
 	}
-	
-	static class ProfitPerMonthUtils {
-		public static string key(Bar bar) {
-			return bar.Date.Year + "-" + bar.Date.Month;
-		}		
-	}
 }
