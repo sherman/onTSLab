@@ -41,11 +41,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="finance\signal\Signals.cs" />
+    <Compile Include="src\signal\Signals.cs" />
+    <Compile Include="finance\trading\handlers\BarHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="finance" />
-    <Folder Include="finance\signal" />
+    <Folder Include="finance\trading" />
+    <Folder Include="src" />
+    <Folder Include="src\signal" />
+    <Folder Include="finance\trading\handlers" />
   </ItemGroup>
 </Project>

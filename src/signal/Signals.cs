@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace org.sherman.ru.finance.signal {
+namespace org.ontslab.signal {
 	/// <summary>
 	/// Common stuff
 	/// </summary>
