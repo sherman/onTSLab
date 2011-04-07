@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>onTSLab</RootNamespace>
+    <RootNamespace>org.ontslab</RootNamespace>
     <AssemblyName>onTSLab</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -31,6 +31,12 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\nunit\bin\net-2.0\framework\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\..\..\..\nunit\bin\net-2.0\framework\nunit.mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -59,12 +65,16 @@
     <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />
     <Compile Include="src\trading\position\PositionCalculator.cs" />
     <Compile Include="src\trading\position\Positions.cs" />
+    <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="test" />
     <Folder Include="src\trading" />
     <Folder Include="src" />
     <Folder Include="src\signal" />
     <Folder Include="src\trading\handlers" />
     <Folder Include="src\trading\position" />
+    <Folder Include="test\trading" />
+    <Folder Include="test\trading\handlers" />
   </ItemGroup>
 </Project>

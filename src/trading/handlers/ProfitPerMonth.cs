@@ -39,5 +39,9 @@ namespace org.ontslab.trading.handlers
 				lastExit = previousPosition.ExitBar;
 			}
 		}
+		
+		public Bar getLastExitBar() {
+			return lastExit;
+		}
 	}
 }
