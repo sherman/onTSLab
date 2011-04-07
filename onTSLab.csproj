@@ -51,6 +51,7 @@
     <Compile Include="src\trading\handlers\BarHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\trading\handlers\CompositeBarHandler.cs" />
+    <Compile Include="src\trading\handlers\ProfitPerMonth.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\trading" />
