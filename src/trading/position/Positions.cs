@@ -7,14 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 
 namespace org.ontslab.trading.position {
 	/// <summary>
 	/// Description of Positions.
 	/// </summary>
 	public static class Positions {
-		public static PositionCalculator fixedSize(double size) {
+		public static FixedSizePositionCalculator fixedSize(double size) {
 			return new FixedSizePositionCalculator(size);
+		}
+		
+		public static FloatingStopLoss floatingStopLoss(IList<double> based, double koeff) {
+			return new FloatingStopLoss(based, koeff);
 		}
 	}
 }

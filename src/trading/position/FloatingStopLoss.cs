@@ -15,7 +15,7 @@ namespace org.ontslab.trading.position {
 	/// <summary>
 	/// Description of FloatingStopLoss.
 	/// </summary>
-	public class FloatingStopLoss {
+	public class FloatingStopLoss : StopLoss {
 		private IList<double> based;
 		private double koeff;
 		
