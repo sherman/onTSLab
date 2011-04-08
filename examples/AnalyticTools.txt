@@ -1,0 +1,20 @@
+﻿One of the major parts of any trading algorithm is various analytic reports
+based on statistic data, which were collected on testing stage.
+
+The framework offers a bunch of such tools.
+
+Measuring profit and max loss per periods(year, month, day).
+
+Example. This  code snippet aggregates profit/loss and max loss per month
+and draws histogram.
+<code>
+// source - ISecurity instance
+ProfitPerPeriod<Month> pnlPerMonth = AnalyticTools.profitPerMonth(source);
+MaxLossPerPeriod<Month> maxLossPerMonth = AnalyticTools.maxLossPerMonth(source);
+
+// ctx - IContext instance
+PnLReport profitAndLoss = PnLReport().
+	setProfitSource(pnlPerMonth.getProfitPerPeriodList()).
+	setMaxLossSource(maxLossPerMonth.getMaxLossPerPeriodList()).
+	draw(ctx);
+</code>
