@@ -12,8 +12,11 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Mocks;
 using org.ontslab.trading.handlers;
+using org.ontslab.misc;
+using org.ontslab.analytic;
 using TSLab.Script;
 
+// FIXME: fix tests
 namespace org.ontslab.test.trading.handlers {
 	[TestFixture]
 	public class ProfitPerMonthTest {
@@ -52,7 +55,7 @@ namespace org.ontslab.test.trading.handlers {
 			positionMock.SetReturnValue("get_ExitBar", expectedExitBar);
 			
 			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
-			ProfitPerMonth pnl = new ProfitPerMonth((ISecurity)sourceMock.MockInstance);
+			ProfitPerPeriod<Month> pnl = AnalyticTools.profitPerMonth((ISecurity)sourceMock.MockInstance);
 			pnl.handleBar(bar);
 			
 			Assert.AreEqual(expectedExitBar, pnl.getLastExitBar());
@@ -73,10 +76,10 @@ namespace org.ontslab.test.trading.handlers {
 			positionMock.ExpectAndReturn("Profit", 100.0);
 			
 			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
-			ProfitPerMonth pnl = new ProfitPerMonth((ISecurity)sourceMock.MockInstance);
+			ProfitPerPeriod<Month> pnl = AnalyticTools.profitPerMonth((ISecurity)sourceMock.MockInstance);
 			pnl.handleBar(bar);
 			
-			List<double> actual = pnl.getProfitPerMonthList();
+			List<double> actual = pnl.getProfitPerPeriodList();
 			
 			Assert.AreEqual(1, actual.Count);
 			Assert.AreEqual(100.0d, actual.Find( p => true));

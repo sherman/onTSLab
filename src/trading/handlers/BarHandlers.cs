@@ -8,6 +8,7 @@
  */
 using System;
 using TSLab.Script;
+using org.ontslab.misc;
 
 namespace org.ontslab.trading.handlers
 {
@@ -15,14 +16,5 @@ namespace org.ontslab.trading.handlers
 	/// Description of BarHandlers.
 	/// </summary>
 	public static class BarHandlers {
-		public static BarHandler profitPerMonth(ISecurity source) {
-			return new ProfitPerMonth(source);
-		}
-	}
-	
-	static class ProfitPerMonthUtils {
-		public static string key(Bar bar) {
-			return bar.Date.Year + "-" + bar.Date.Month;
-		}
 	}
 }

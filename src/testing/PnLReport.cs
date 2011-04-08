@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using org.ontslab.trading.handlers;
+using org.ontslab.misc;
 using TSLab.Script;
 using TSLab.Script.Handlers;
 using TSLab.Script.Helpers;
@@ -18,17 +19,23 @@ namespace org.ontslab.testing {
 	/// Description of PnLReport.
 	/// </summary>
 	sealed public class PnLReport {
-		private ProfitPerMonth profitSource;
+		private List<double> profitSource;
+		private List<double> maxLossSource;
+		
+		// FIXME: find a way to fix the weakness of c# 3.5(the generic types aren't covariant)
+		/*
+		private ProfitPerPeriod<Interval> profitSource;
 		private MaxLossPerMonth maxLossSource;
+		*/
 		
 		public PnLReport() {}
 		
-		public PnLReport setProfitSource(ProfitPerMonth profitSource) {
+		public PnLReport setProfitSource(List<double> profitSource) {
 			this.profitSource = profitSource;
 			return this;
 		}
 		
-		public PnLReport setMaxLossSource(MaxLossPerMonth maxLossSource) {
+		public PnLReport setMaxLossSource(List<double> maxLossSource) {
 			this.maxLossSource = maxLossSource;
 			return this;
 		}
@@ -39,7 +46,7 @@ namespace org.ontslab.testing {
 			if (null != profitSource) {
 				profitPane.AddList(
 					"ProfitPerMonth",
-					profitSource.getProfitPerMonthList(),
+					profitSource,
 					ListStyles.HISTOHRAM,
 					0x336699,
 					LineStyles.SOLID,
@@ -50,7 +57,7 @@ namespace org.ontslab.testing {
 			if (null != maxLossSource) {
 				profitPane.AddList(
 					"MaxLossPerMonth",
-					maxLossSource.getMaxLossPerMonthList(),
+					maxLossSource,
 					ListStyles.HISTOHRAM,
 					0xff00000,
 					LineStyles.SOLID,
@@ -62,7 +69,7 @@ namespace org.ontslab.testing {
 				IList<double> profitSma = context.GetData(
 					"ProfitSma",
 					new[] {"3"}, delegate {
-						return Series.SMA(profitSource.getProfitPerMonthList(), 3);
+						return Series.SMA(profitSource, 3);
 					}
 				);
 				

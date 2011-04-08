@@ -8,20 +8,13 @@
  */
 using System;
 using TSLab.Script;
+using org.ontslab.misc;
 
 namespace org.ontslab.trading.handlers {
 	/// <summary>
 	/// Description of Handlers.
 	/// </summary>
 	public static class Handlers {
-		public static ProfitPerMonth profitPerMonth(ISecurity source) {
-			return new ProfitPerMonth(source);
-		}
-		
-		public static MaxLossPerMonth maxLossPerMonth(ISecurity source) {
-			return new MaxLossPerMonth(source);
-		}
-		
 		public static CompositeBarHandler composite() {
 			return new CompositeBarHandler();
 		}
