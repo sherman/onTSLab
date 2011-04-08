@@ -81,6 +81,7 @@
     <Compile Include="src\trading\position\StopLoss.cs" />
     <Compile Include="src\trading\position\TakeProfit.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
+    <None Include="README" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\data" />
