@@ -45,14 +45,7 @@ namespace org.ontslab.trading.handlers
 		}
 		
 		public List<double> getProfitPerMonthList() {
-			List<double> profitList = new List<double>();
-			IEnumerator<double> iter = profitPerMonth.Values.GetEnumerator();
-			
-			while (iter.MoveNext()) {
-				profitList.Add(iter.Current);
-			};
-			
-			return profitList;
+			return new List<double>(profitPerMonth.Values);
 		}
 		
 		public override string ToString() {

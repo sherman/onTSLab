@@ -21,7 +21,7 @@ namespace org.ontslab.testing {
 		private ProfitPerMonth profitSource;
 		private MaxLossPerMonth maxLossSource;
 		
-		public PnLReport(ISecurity source) {}
+		public PnLReport() {}
 		
 		public PnLReport setProfitSource(ProfitPerMonth profitSource) {
 			this.profitSource = profitSource;
