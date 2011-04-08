@@ -57,6 +57,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\data\DataUtils.cs" />
+    <Compile Include="src\data\NotEnoughDataException.cs" />
     <Compile Include="src\signal\Signals.cs" />
     <Compile Include="src\testing\PnLReport.cs" />
     <Compile Include="src\trading\handlers\BarHandler.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\data" />
     <Folder Include="src\testing" />
     <Folder Include="src\trading\algorithms" />
     <Folder Include="test" />
