@@ -21,5 +21,9 @@ namespace org.ontslab.trading.position {
 		public static FloatingStopLoss floatingStopLoss(IList<double> based, double koeff) {
 			return new FloatingStopLoss(based, koeff);
 		}
+		
+		public static AbsoluteTakeProfit absoluteTakeProfit(double size) {
+			return new AbsoluteTakeProfit(size);
+		}
 	}
 }
