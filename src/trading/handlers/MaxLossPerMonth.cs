@@ -41,6 +41,8 @@ namespace org.ontslab.trading.handlers {
 					maxLossPerMonth[monthKey] = 0.0;
 				}
 				
+				profitPerMonth[monthKey] += previousPosition.Profit();
+				
 				if (previousPosition.Profit() < 0 && profitPerMonth[monthKey] < 0) {
 					if (
 						maxLossPerMonth[monthKey] == 0
@@ -60,6 +62,22 @@ namespace org.ontslab.trading.handlers {
 		
 		public List<double> getMaxLossPerMonthList() {
 			return new List<double>(maxLossPerMonth.Values);
+		}
+		
+		public override string ToString() {
+			List<string> months = new List<string>(maxLossPerMonth.Keys);
+			string result = "";
+			months.ForEach(
+				delegate(string month){
+					result += String.Format(
+						"Max loss was {0:0.00} in month {1}\r\n",
+						maxLossPerMonth[month],
+						month
+					);
+				}
+			);
+			
+			return result;
 		}
 	}
 }
