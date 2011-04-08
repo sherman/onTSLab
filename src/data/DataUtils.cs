@@ -34,5 +34,40 @@ namespace org.ontslab.data {
 			
 			return true;
 		}
+		
+		public static int getDirectionChangingCount(
+			IList<double> data,
+			int barIndex,
+			int bars
+		) {
+			bool grow = false;
+			if (isIndicatorGrows(data, barIndex, bars, 0))
+				grow = true;
+			
+			int counter = 0;
+			
+			for (int i = 0; i < bars; i++) {
+				double curr = data[barIndex - i];
+				double prev = data[barIndex - i - 1];
+				
+				if (grow) {
+					if (prev < curr)
+						continue;
+					else {
+						grow = false;
+						++counter;
+					}
+				} else {
+					if (prev > curr)
+						continue;
+					else {
+						grow = true;
+						++counter;
+					}
+				}
+			}
+			
+			return counter;
+		}
 	}
 }
