@@ -59,14 +59,7 @@ namespace org.ontslab.trading.handlers {
 		}
 		
 		public List<double> getMaxLossPerMonthList() {
-			List<double> lossList = new List<double>();
-			IEnumerator<double> iter = maxLossPerMonth.Values.GetEnumerator();
-			
-			while (iter.MoveNext()) {
-				lossList.Add(iter.Current);
-			};
-			
-			return lossList;
+			return new List<double>(maxLossPerMonth.Values);
 		}
 	}
 }

@@ -33,7 +33,7 @@ namespace org.ontslab.testing {
 			return this;
 		}
 		
-		public void draw(IContext context) {
+		public PnLReport draw(IContext context) {
 			IPane profitPane = context.CreatePane("Profit", 20.0, true);
 			
 			if (null != profitSource) {
@@ -75,6 +75,8 @@ namespace org.ontslab.testing {
 					PaneSides.LEFT
 				);
 			}
+			
+			return this;
 		}
 	}
 }
