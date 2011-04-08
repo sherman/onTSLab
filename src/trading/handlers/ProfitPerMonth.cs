@@ -54,5 +54,21 @@ namespace org.ontslab.trading.handlers
 			
 			return profitList;
 		}
+		
+		public override string ToString() {
+			List<string> months = new List<string>(profitPerMonth.Keys);
+			string result = "";
+			months.ForEach(
+				delegate(string month){
+					result += String.Format(
+						"Profit was {0:0.00} in month {1}\r\n",
+						profitPerMonth[month],
+						month
+					);
+				}
+			);
+			
+			return result;
+		}
 	}
 }
