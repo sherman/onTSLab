@@ -56,7 +56,6 @@ namespace org.ontslab.test.trading.handlers {
 			
 			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
 			ProfitPerPeriod<Month> pnl = AnalyticTools.profitPerMonth((ISecurity)sourceMock.MockInstance);
-			pnl.handleBar(bar);
 			
 			Assert.AreEqual(expectedExitBar, pnl.getLastExitBar());
 		}
@@ -77,7 +76,6 @@ namespace org.ontslab.test.trading.handlers {
 			
 			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
 			ProfitPerPeriod<Month> pnl = AnalyticTools.profitPerMonth((ISecurity)sourceMock.MockInstance);
-			pnl.handleBar(bar);
 			
 			List<double> actual = pnl.getProfitPerPeriodList();
 			
