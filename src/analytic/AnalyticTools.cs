@@ -28,7 +28,7 @@ namespace org.ontslab.analytic {
 		}
 		
 		public static MaxLossPerPeriod<Month> maxLossPerMonth(ISecurity source) {
-			return new MaxLossPerPeriod<Month>(source); // 2627
+			return new MaxLossPerPeriod<Month>(source);
 		}
 	}
 }
