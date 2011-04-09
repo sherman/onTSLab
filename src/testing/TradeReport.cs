@@ -30,7 +30,7 @@ namespace org.ontslab.testing
 			
 			IList<double> losses = new List<double>(baseSource.Bars.Count);
 			IList<double> wins = new List<double>(baseSource.Bars.Count);
-			context.Log(trades.Count.ToString(), 0x000000);
+			
 			for (int i = 0; i < baseSource.Bars.Count; i++) {
 				if (trades.ContainsKey(i)) {
 					if (trades[i].getProfit() > 0) {
