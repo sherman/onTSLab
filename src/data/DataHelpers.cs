@@ -127,22 +127,22 @@ namespace org.ontslab.data {
 			);
 		}
 		
-		public static double highest(int indexBar, IList<double> data, int period) {
+		public static double highest(int barIndex, IList<double> data, int period) {
 			double max = 0;
-			int lastBar = Math.Min(indexBar + period, data.Count);
+			int lastBar = Math.Min(barIndex + period, data.Count);
 			
-			for (int i = indexBar; i < lastBar; i++) {
+			for (int i = barIndex; i < lastBar; i++) {
 				max = Math.Max(max, data[i]);
 			}
 			
 			return max;
 		}
 		
-		public static double lowest(int indexBar, IList<double> data, int period) {
+		public static double lowest(int barIndex, IList<double> data, int period) {
 			double min = Double.MaxValue;
-			int lastBar = Math.Min(indexBar + period, data.Count);
+			int lastBar = Math.Min(barIndex + period, data.Count);
 			
-			for (int i = indexBar; i < lastBar; i++) {
+			for (int i = barIndex; i < lastBar; i++) {
 				min = Math.Min(min, data[i]);
 			}
 			
