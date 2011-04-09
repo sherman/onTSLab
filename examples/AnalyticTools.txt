@@ -3,10 +3,10 @@ based on statistic data, which were collected on testing stage.
 
 The framework offers a bunch of such tools.
 
-Measuring profit and max loss per periods(year, month, day).
+1. Measuring profit and max loss per periods(year, month, day).
 
 Example. This  code snippet aggregates profit/loss and max loss per month
-and draws histogram.
+and draws bar chart.
 <code>
 // source - ISecurity instance
 ProfitPerPeriod<Month> pnlPerMonth = AnalyticTools.profitPerMonth(source);
@@ -17,4 +17,15 @@ PnLReport profitAndLoss = PnLReport().
 	setProfitSource(pnlPerMonth.getProfitPerPeriodList()).
 	setMaxLossSource(maxLossPerMonth.getMaxLossPerPeriodList()).
 	draw(ctx);
+</code>
+
+2. Trade report.
+
+Unfortunately, TSLab doesn't show information about profit or loss in the trade on the charts screen.
+This report added the pane with the bar chart. Green bar means a profit trade, but red bar means a loss trade.
+
+<code>
+// source - ISecurity instance
+TradeReport tradeReport = new TradeReport(new TradeSource(source));
+tradeReport.draw(ctx);
 </code>
