@@ -31,10 +31,6 @@ namespace org.ontslab.analytic
 		
 		public ProfitPerPeriod(ISecurity source) { this.source = source; }
 		
-		public void handleBar(Bar bar) {
-			// nope
-		}
-		
 		public Bar getLastExitBar() {
 			if (!fetched) {
 				fetch();
