@@ -53,7 +53,7 @@ namespace org.ontslab.analytic {
 			List<string> periods = new List<string>(maxLossPerPeriod.Keys);
 			string result = "";
 			periods.ForEach(
-				delegate(string periodKey){
+				periodKey => {
 					result += String.Format(
 						"Max loss was {0:0.00} in {1} {2}\r\n",
 						profitPerPeriod[periodKey],

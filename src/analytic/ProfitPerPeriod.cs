@@ -66,7 +66,7 @@ namespace org.ontslab.analytic
 			string result = "";
 			
 			periods.ForEach(
-				delegate(string periodKey){
+				periodKey => {
 					result += String.Format(
 						"Profit was {0:0.00} in {1} {2}\r\n",
 						profitPerPeriod[periodKey],
