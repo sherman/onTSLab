@@ -15,13 +15,13 @@ namespace org.ontslab.trading.handlers {
 	/// </summary>
 	/// 
 	
-	public delegate double BalanceConvertion(IPosition position);
+	public delegate double ProfitConvertion(IPosition position);
 	
 	public class BalanceBarHandler : BarHandler {
 		private double balance = 0.0;
 		private Bar lastBar;
 		private ISecurity source;
-		private BalanceConvertion method;
+		private ProfitConvertion method;
 		
 		public BalanceBarHandler(ISecurity source) {
 			this.source = source;
@@ -44,7 +44,7 @@ namespace org.ontslab.trading.handlers {
 			return balance;
 		}
 		
-		public BalanceBarHandler setConvertionMethod(BalanceConvertion method) {
+		public BalanceBarHandler setProfitConvertionMethod(ProfitConvertion method) {
 			this.method = method;
 			return this;
 		}
