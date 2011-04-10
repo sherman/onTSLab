@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TSLab.Script;
 using org.ontslab.misc;
 
@@ -63,6 +64,7 @@ namespace org.ontslab.analytic
 		public override string ToString() {
 			List<string> periods = new List<string>(profitPerPeriod.Keys);
 			string result = "";
+			
 			periods.ForEach(
 				delegate(string periodKey){
 					result += String.Format(
@@ -78,22 +80,21 @@ namespace org.ontslab.analytic
 		}
 		
 		private void fetch() {
-			IEnumerator<IPosition> positionEnum = source.Positions.GetEnumerator();
-			
-			while (positionEnum.MoveNext()) {
-				if (!positionEnum.Current.IsActive) {
-					string periodKey = period.keyFromTime(positionEnum.Current.ExitBar.Date);
+			source.Positions.Where(
+				position => !position.IsActive
+			).ToList().ForEach(
+				position => {
+					string periodKey = period.keyFromTime(position.ExitBar.Date);
 					
 					if (!profitPerPeriod.ContainsKey(periodKey)) {
 						profitPerPeriod[periodKey] = 0.0;
 					}
-				
-					profitPerPeriod[periodKey] += positionEnum.Current.Profit();
 					
-					lastExit = positionEnum.Current.ExitBar;
+					profitPerPeriod[periodKey] += position.Profit();
+					lastExit = position.ExitBar;
 				}
-			}
-			
+			);
+				
 			fetched = true;
 		}
 	}
