@@ -94,7 +94,7 @@ namespace org.ontslab.analytic
 					lastExit = position.ExitBar;
 				}
 			);
-				
+			
 			fetched = true;
 		}
 	}
