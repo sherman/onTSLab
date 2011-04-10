@@ -18,5 +18,9 @@ namespace org.ontslab.trading.handlers {
 		public static CompositeBarHandler composite() {
 			return new CompositeBarHandler();
 		}
+		
+		public static BalanceBarHandler balance(ISecurity source) {
+			return new BalanceBarHandler(source);
+		}
 	}
 }
