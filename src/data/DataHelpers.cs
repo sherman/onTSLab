@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using TSLab.Script;
 using TSLab.Script.Handlers;
@@ -20,10 +21,9 @@ namespace org.ontslab.data {
 	/// </summary>
 	public static class DataHelpers {
 		public static IList<double> roundList(IList<Double> data, int precision) {
-			for (int i = 0; i < data.Count; i++) {
-				data[i] = Math.Round(data[i], precision);
-			}
-			return data;
+			return data.Select(
+				elt => Math.Round(elt, precision) 
+			).ToList();
 		}
 		
 		public static IList<double> generateATR(IContext ctx, ISecurity source, int period) {
