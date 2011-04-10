@@ -83,6 +83,7 @@
     <Compile Include="src\trading\position\AbsoluteTakeProfit.cs" />
     <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />
     <Compile Include="src\trading\position\FloatingStopLoss.cs" />
+    <Compile Include="src\trading\position\PercentOfBalanceBasedPositionCalculator.cs" />
     <Compile Include="src\trading\position\PositionCalculator.cs" />
     <Compile Include="src\trading\position\Positions.cs" />
     <Compile Include="src\trading\position\Security.cs" />
