@@ -1,0 +1,4 @@
+﻿1. Open project in SharpDeveloper or another c# IDE.
+2. Build project.
+3. Add assembly(dll) to your external script block in TSLab.
+4. Add assembly(dll) to references in your .NET project.
