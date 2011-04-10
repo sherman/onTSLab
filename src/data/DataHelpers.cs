@@ -130,14 +130,14 @@ namespace org.ontslab.data {
 		public static double highest(int barIndex, IList<double> data, int period) {
 			return data.
 				Skip(barIndex).
-				Take(Math.Min(barIndex + period, data.Count)).
+				Take(Math.Min(period, data.Count)).
 				Max();
 		}
 		
 		public static double lowest(int barIndex, IList<double> data, int period) {
 			return data.
 				Skip(barIndex).
-				Take(Math.Min(barIndex + period, data.Count)).
+				Take(Math.Min(period, data.Count)).
 				Min();
 		}
 	}

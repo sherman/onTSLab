@@ -24,6 +24,7 @@ namespace org.ontslab.test.data {
 			Assert.AreEqual(2, DataHelpers.highest(0, data, 2));
 			Assert.AreEqual(6, DataHelpers.highest(0, data, 10));
 			Assert.AreEqual(1, DataHelpers.highest(3, data, 10));
+			Assert.AreEqual(2, DataHelpers.highest(1, data, 1));
 		}
 		
 		[Test]
