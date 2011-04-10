@@ -47,6 +47,19 @@ namespace org.ontslab.analytic
 			return new List<double>(profitPerPeriod.Values);
 		}
 		
+		public double getProfitPerDate(DateTime time) {
+			if (!fetched) {
+				fetch();
+			}
+			
+			string periodKey = period.keyFromTime(time);
+			
+			if (profitPerPeriod.ContainsKey(periodKey))
+				return profitPerPeriod[periodKey];
+			else
+				return 0.0;
+		}
+		
 		public override string ToString() {
 			List<string> periods = new List<string>(profitPerPeriod.Keys);
 			string result = "";
@@ -69,13 +82,13 @@ namespace org.ontslab.analytic
 			
 			while (positionEnum.MoveNext()) {
 				if (!positionEnum.Current.IsActive) {
-					string monthKey = period.keyFromTime(positionEnum.Current.ExitBar.Date);
+					string periodKey = period.keyFromTime(positionEnum.Current.ExitBar.Date);
 					
-					if (!profitPerPeriod.ContainsKey(monthKey)) {
-						profitPerPeriod[monthKey] = 0.0;
+					if (!profitPerPeriod.ContainsKey(periodKey)) {
+						profitPerPeriod[periodKey] = 0.0;
 					}
 				
-					profitPerPeriod[monthKey] += positionEnum.Current.Profit();
+					profitPerPeriod[periodKey] += positionEnum.Current.Profit();
 					
 					lastExit = positionEnum.Current.ExitBar;
 				}
