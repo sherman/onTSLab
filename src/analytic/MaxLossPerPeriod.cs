@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TSLab.Script;
 using org.ontslab.misc;
 
@@ -66,34 +67,34 @@ namespace org.ontslab.analytic {
 		}
 		
 		private void fetch() {
-			IEnumerator<IPosition> positionEnum = source.Positions.GetEnumerator();
-			
-			while (positionEnum.MoveNext()) {
-				if (!positionEnum.Current.IsActive) {
-					string key = period.keyFromTime(positionEnum.Current.ExitBar.Date);
+			source.Positions.Where(
+				position => !position.IsActive
+			).ToList().ForEach(
+				position => {
+					string periodKey = period.keyFromTime(position.ExitBar.Date);
 					
-					if (!profitPerPeriod.ContainsKey(key)) {
-						profitPerPeriod[key] = 0.0;
+					if (!profitPerPeriod.ContainsKey(periodKey)) {
+						profitPerPeriod[periodKey] = 0.0;
 					}
 					
-					if (!maxLossPerPeriod.ContainsKey(key)) {
-						maxLossPerPeriod[key] = 0.0;
+					if (!maxLossPerPeriod.ContainsKey(periodKey)) {
+						maxLossPerPeriod[periodKey] = 0.0;
 					}
-				
-					profitPerPeriod[key] += positionEnum.Current.Profit();
 					
-					if (positionEnum.Current.Profit() < 0 && profitPerPeriod[key] < 0) {
+					profitPerPeriod[periodKey] += position.Profit();
+					
+					if (position.Profit() < 0 && profitPerPeriod[periodKey] < 0) {
 						if (
-							maxLossPerPeriod[key] == 0
-							|| profitPerPeriod[key] < maxLossPerPeriod[key]
+							maxLossPerPeriod[periodKey] == 0
+							|| profitPerPeriod[periodKey] < maxLossPerPeriod[periodKey]
 						) {
-							maxLossPerPeriod[key] = profitPerPeriod[key];
+							maxLossPerPeriod[periodKey] = profitPerPeriod[periodKey];
 						}
 					}
 					
-					lastExit = positionEnum.Current.ExitBar;
+					lastExit = position.ExitBar;
 				}
-			}
+			);
 			
 			fetched = true;
 		}
