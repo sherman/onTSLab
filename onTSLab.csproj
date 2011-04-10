@@ -86,7 +86,6 @@
     <Compile Include="src\trading\position\PercentOfBalanceBasedPositionCalculator.cs" />
     <Compile Include="src\trading\position\PositionCalculator.cs" />
     <Compile Include="src\trading\position\Positions.cs" />
-    <Compile Include="src\trading\position\Security.cs" />
     <Compile Include="src\trading\position\StopLoss.cs" />
     <Compile Include="src\trading\position\TakeProfit.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />

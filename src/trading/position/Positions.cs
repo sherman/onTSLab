@@ -18,6 +18,14 @@ namespace org.ontslab.trading.position {
 			return new FixedSizePositionCalculator(size);
 		}
 		
+		public static PercentOfBalanceBasedPositionCalculator percentOfBalance(
+			double percent,
+			double currentBalance,
+			double maxLoss
+		) {
+			return new PercentOfBalanceBasedPositionCalculator(percent, currentBalance, maxLoss);
+		}
+		
 		public static FloatingStopLoss floatingStopLoss(IList<double> based, double koeff) {
 			return new FloatingStopLoss(based, koeff);
 		}
