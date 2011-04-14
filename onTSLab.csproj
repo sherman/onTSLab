@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\analytic\AnalyticTools.cs" />
-    <Compile Include="src\analytic\Balance.cs" />
     <Compile Include="src\analytic\MaxLossPerPeriod.cs" />
     <Compile Include="src\analytic\ProfitPerPeriod.cs" />
     <Compile Include="src\analytic\Trade.cs" />
@@ -79,7 +78,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\trading\handlers\CompositeBarHandler.cs" />
     <Compile Include="src\trading\handlers\Handlers.cs" />
-    <Compile Include="src\trading\handlers\TradeBarHandler.cs" />
     <Compile Include="src\trading\position\AbsoluteStopLoss.cs" />
     <Compile Include="src\trading\position\AbsoluteTakeProfit.cs" />
     <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />

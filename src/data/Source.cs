@@ -33,5 +33,5 @@ namespace org.ontslab.data {
 			
 			return lastPosition.Profit() < 0;
         }
-    }   
+    }
 }
