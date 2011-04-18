@@ -94,12 +94,14 @@
     <Compile Include="test\data\DataHelpersTest.cs" />
     <Compile Include="test\trading\cache\MemoryCacheManagerTest.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
+    <None Include="doc\INSTALL" />
+    <None Include="doc\README" />
+    <None Include="doc\THANKS" />
     <None Include="examples\AnalyticTools.txt" />
-    <None Include="INSTALL" />
-    <None Include="README" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="examples" />
+    <Folder Include="doc" />
     <Folder Include="src\data" />
     <Folder Include="src\analytic" />
     <Folder Include="src\testing" />
