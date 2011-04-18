@@ -73,6 +73,10 @@
     <Compile Include="src\signal\Signals.cs" />
     <Compile Include="src\testing\PnLReport.cs" />
     <Compile Include="src\testing\TradeReport.cs" />
+    <Compile Include="src\trading\cache\Cache.cs" />
+    <Compile Include="src\trading\cache\CacheManager.cs" />
+    <Compile Include="src\trading\cache\MemoryCache.cs" />
+    <Compile Include="src\trading\cache\MemoryCacheManager.cs" />
     <Compile Include="src\trading\handlers\BalanceBarHandler.cs" />
     <Compile Include="src\trading\handlers\BarHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="src\trading\position\StopLoss.cs" />
     <Compile Include="src\trading\position\TakeProfit.cs" />
     <Compile Include="test\data\DataHelpersTest.cs" />
+    <Compile Include="test\trading\cache\MemoryCacheManagerTest.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
     <None Include="examples\AnalyticTools.txt" />
     <None Include="INSTALL" />
@@ -100,6 +105,7 @@
     <Folder Include="src\testing" />
     <Folder Include="src\trading\algorithms" />
     <Folder Include="src\misc" />
+    <Folder Include="src\trading\cache" />
     <Folder Include="test" />
     <Folder Include="src\trading" />
     <Folder Include="src" />
@@ -109,5 +115,6 @@
     <Folder Include="test\data" />
     <Folder Include="test\trading" />
     <Folder Include="test\trading\handlers" />
+    <Folder Include="test\trading\cache" />
   </ItemGroup>
 </Project>
