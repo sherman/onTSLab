@@ -21,8 +21,12 @@ namespace org.ontslab.trading.cache
 		public V @get(K key) {
 			if (storage.ContainsKey(key))
 				return storage[key];
-			else
-				return default(V);
+			else {
+				if (typeof(V).IsValueType)
+					return default(V);
+				else
+					return (V)(object)null;
+			}
 		}
 		
 		public void @set(K key, V elt) {
@@ -30,8 +34,7 @@ namespace org.ontslab.trading.cache
 		}
 		
 		public void delete(K key) {
-			if (storage.ContainsKey(key))
-				storage.Remove(key);
+			storage.Remove(key);
 		}
 		
 		public void deleteAll() {
