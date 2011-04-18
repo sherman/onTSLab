@@ -22,10 +22,7 @@ namespace org.ontslab.trading.cache
 			if (storage.ContainsKey(key))
 				return storage[key];
 			else {
-				if (typeof(V).IsValueType)
-					return default(V);
-				else
-					return (V)(object)null;
+				return default(V);
 			}
 		}
 		
