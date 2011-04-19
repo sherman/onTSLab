@@ -22,6 +22,10 @@ namespace org.ontslab.data {
 		private DateTime first;
 		private DateTime last;
 		
+		public HourlySource(ISecurity original) {
+			createHourlySourceFrom(original);
+		}
+		
 		public HourlySource(IList<Bar> original) {
 			createHourlySourceFrom(original);
 		}
@@ -79,6 +83,37 @@ namespace org.ontslab.data {
 			
 			first = source.First().Date;
 			last = source.Last().Date;
+		}
+		
+		private void createHourlySourceFrom(ISecurity original) {
+			ISecurity hourSource = original.CompressTo(
+				new Interval(60, DataIntervals.MINUTE)
+			);
+			
+			IDictionary<string, Bar> newSourceBars =
+				new Dictionary<string, Bar>(hourSource.Bars.Count);
+			
+			// convert to source bars
+			int hour = original.Bars[0].Date.Hour;
+			
+			int hourBarsIndex = 0;
+			
+			for (int i = 0; i < original.Bars.Count; i++) {
+				if (hour != original.Bars[i].Date.Hour) {
+					++hourBarsIndex;
+					hour = original.Bars[i].Date.Hour;
+				}
+				
+				string key = hourSource.Bars[hourBarsIndex].Date.ToShortDateString() + "_" + hourSource.Bars[hourBarsIndex].Date.Hour.ToString();
+				
+				if (!newSourceBars.ContainsKey(key)) {
+					newSourceBars.Add(key, hourSource.Bars[hourBarsIndex]);
+				}
+			}
+			
+			this.hourlySource = newSourceBars;
+			this.first = original.Bars[0].Date;
+			this.last = original.Bars[original.Bars.Count - 1].Date;
 		}
 	}
 }
