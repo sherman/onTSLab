@@ -64,6 +64,7 @@
     <Compile Include="src\analytic\ProfitPerPeriod.cs" />
     <Compile Include="src\analytic\Trade.cs" />
     <Compile Include="src\analytic\TradeSource.cs" />
+    <Compile Include="src\data\DailySource.cs" />
     <Compile Include="src\data\DataHelpers.cs" />
     <Compile Include="src\data\DataUtils.cs" />
     <Compile Include="src\data\NotEnoughDataException.cs" />
