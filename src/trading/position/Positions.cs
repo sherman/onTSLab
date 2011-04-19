@@ -32,6 +32,10 @@ namespace org.ontslab.trading.position {
 			return new FloatingStopLoss(based, koeff);
 		}
 		
+		public static AbsoluteStopLoss absoluteStopLoss(double size) {
+			return new AbsoluteStopLoss(size);
+		}
+		
 		public static AbsoluteTakeProfit absoluteTakeProfit(double size) {
 			return new AbsoluteTakeProfit(size);
 		}
