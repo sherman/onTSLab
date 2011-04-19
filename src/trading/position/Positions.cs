@@ -39,5 +39,9 @@ namespace org.ontslab.trading.position {
 		public static AbsoluteTakeProfit absoluteTakeProfit(double size) {
 			return new AbsoluteTakeProfit(size);
 		}
+		
+		public static FloatingTakeProfit floatingTakeProfit(IList<double> based, double koeff) {
+			return new FloatingTakeProfit(based, koeff);
+		}
 	}
 }

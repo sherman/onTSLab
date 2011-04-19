@@ -64,6 +64,7 @@
     <Compile Include="src\analytic\ProfitPerPeriod.cs" />
     <Compile Include="src\analytic\Trade.cs" />
     <Compile Include="src\analytic\TradeSource.cs" />
+    <Compile Include="src\data\CompressedSource.cs" />
     <Compile Include="src\data\DailySource.cs" />
     <Compile Include="src\data\DataHelpers.cs" />
     <Compile Include="src\data\DataUtils.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="src\trading\position\AbsoluteTakeProfit.cs" />
     <Compile Include="src\trading\position\FixedSizePositionCalculator.cs" />
     <Compile Include="src\trading\position\FloatingStopLoss.cs" />
+    <Compile Include="src\trading\position\FloatingTakeProfit.cs" />
     <Compile Include="src\trading\position\PercentOfBalanceBasedPositionCalculator.cs" />
     <Compile Include="src\trading\position\PositionCalculator.cs" />
     <Compile Include="src\trading\position\Positions.cs" />
