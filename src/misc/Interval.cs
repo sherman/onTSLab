@@ -20,6 +20,7 @@ namespace org.ontslab.misc
 	public interface Interval {
 		string keyFromTime(DateTime time);
 		string getName();
+		TimeSpan getTimeSpan();
 	};
 	
 	public sealed class Year : Interval {
@@ -28,6 +29,10 @@ namespace org.ontslab.misc
 		}
 		
 		public string getName() { return "year"; }
+		
+		public TimeSpan getTimeSpan() {
+			throw new NotImplementedException();
+		}
 	}
 	
 	public sealed class Month : Interval {
@@ -36,6 +41,10 @@ namespace org.ontslab.misc
 		}
 		
 		public string getName() { return "month"; }
+		
+		public TimeSpan getTimeSpan() {
+			throw new NotImplementedException();
+		}
 	}
 	
 	public sealed class Day : Interval {
@@ -44,6 +53,10 @@ namespace org.ontslab.misc
 		}
 		
 		public string getName() { return "day"; }
+		
+		public TimeSpan getTimeSpan() {
+			return new TimeSpan(1, 0, 0, 0);
+		}
 	}
 	
 	public sealed class Hour : Interval {
@@ -52,5 +65,9 @@ namespace org.ontslab.misc
 		}
 		
 		public string getName() { return "hour"; }
+		
+		public TimeSpan getTimeSpan() {
+			return new TimeSpan(0, 1, 0, 0);
+		}
 	}
 }

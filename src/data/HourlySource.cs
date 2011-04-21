@@ -36,7 +36,7 @@ namespace org.ontslab.data {
 			DateTime startBarDate = date;
 			
 			do {
-				startBarDate = startBarDate.Subtract(new TimeSpan(0, 1, 0, 0, 0));
+				startBarDate = startBarDate.Subtract(period.getTimeSpan());
 				previousBarKey = period.keyFromTime(startBarDate);
 				
 				if (compressedSource.ContainsKey(previousBarKey)) {
@@ -56,7 +56,7 @@ namespace org.ontslab.data {
 			DateTime startBarDate = date;
 			
 			do {
-				startBarDate = startBarDate.Add(new TimeSpan(0, 1, 0, 0, 0));
+				startBarDate = startBarDate.Add(period.getTimeSpan());
 				nextBarKey = period.keyFromTime(startBarDate);
 				
 				if (compressedSource.ContainsKey(nextBarKey)) {
