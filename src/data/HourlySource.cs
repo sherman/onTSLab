@@ -24,18 +24,7 @@ namespace org.ontslab.data {
 		}
 		
 		public HourlySource(IList<Bar> original) {
-			createHourlySourceFrom(original);
-		}
-		
-		private void createHourlySourceFrom(IList<Bar> source) {
-			compressedSource = new Dictionary<string, Bar>(source.Count);
-			
-			source.ToList().ForEach(
-				bar => compressedSource.Add(period.keyFromTime(bar.Date), bar)
-			);
-			
-			first = source.First().Date;
-			last = source.Last().Date;
+			createCompressedSourceFrom(original);
 		}
 		
 		private void createHourlySourceFrom(ISecurity original) {

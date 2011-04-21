@@ -9,6 +9,7 @@
 ***************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TSLab.Script;
 using org.ontslab.misc;
 
@@ -21,6 +22,17 @@ namespace org.ontslab.data {
 		protected DateTime first;
 		protected DateTime last;
 		protected T period = new T();
+		
+		protected void createCompressedSourceFrom(IList<Bar> source) {
+			compressedSource = new Dictionary<string, Bar>(source.Count);
+			
+			source.ToList().ForEach(
+				bar => compressedSource.Add(period.keyFromTime(bar.Date), bar)
+			);
+			
+			first = source.First().Date;
+			last = source.Last().Date;
+		}
 		
 		public Bar getBar(DateTime date) {
 			return compressedSource[period.keyFromTime(date)];
