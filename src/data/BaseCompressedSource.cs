@@ -18,12 +18,52 @@ namespace org.ontslab.data {
 	/// </summary>
 	public abstract class BaseCompressedSource<T>  : CompressedSource where T : Interval, new() {
 		protected IDictionary<string, Bar> compressedSource;
+		protected DateTime first;
+		protected DateTime last;
 		protected T period = new T();
 		
 		public Bar getBar(DateTime date) {
 			return compressedSource[period.keyFromTime(date)];
 		}
-		public abstract Bar getPreviousBar(DateTime date);
-		public abstract Bar getNextBar(DateTime date);
+		
+		public Bar getPreviousBar(DateTime date) {
+			string previousBarKey = null;
+			
+			DateTime startBarDate = date;
+			
+			do {
+				startBarDate = startBarDate.Subtract(period.getTimeSpan());
+				previousBarKey = period.keyFromTime(startBarDate);
+				
+				if (compressedSource.ContainsKey(previousBarKey)) {
+					break;
+				}
+			} while (startBarDate >= first);
+			
+			if (compressedSource.ContainsKey(previousBarKey))
+				return compressedSource[previousBarKey];
+			else
+				return null;
+		}
+		
+		public Bar getNextBar(DateTime date) {
+			string nextBarKey = null;
+			
+			DateTime startBarDate = date;
+			
+			do {
+				startBarDate = startBarDate.Add(period.getTimeSpan());
+				nextBarKey = period.keyFromTime(startBarDate);
+				
+				if (compressedSource.ContainsKey(nextBarKey)) {
+					break;
+				}
+			} while (startBarDate <= last);
+			
+			if (compressedSource.ContainsKey(nextBarKey))
+				return compressedSource[nextBarKey];
+			else
+				return null;
+		}
 	}
 }

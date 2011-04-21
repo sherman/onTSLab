@@ -19,55 +19,12 @@ namespace org.ontslab.data {
 	/// Description of DailySource.
 	/// </summary>
 	public class DailySource : BaseCompressedSource<Day> {
-		private DateTime first;
-		private DateTime last;
-		
 		public DailySource(ISecurity original) {
 			createDailySourceFrom(original);
 		}
 		
 		public DailySource(IList<Bar> original) {
 			createDailySourceFrom(original);
-		}
-		
-		public override Bar getPreviousBar(DateTime date) {
-			string previousBarKey = null;
-			
-			DateTime startBarDate = date;
-			
-			do {
-				startBarDate = startBarDate.Subtract(new TimeSpan(1, 0, 0, 0, 0));
-				previousBarKey = period.keyFromTime(startBarDate);
-				
-				if (compressedSource.ContainsKey(previousBarKey)) {
-					break;
-				}
-			} while (startBarDate >= first);
-			
-			if (compressedSource.ContainsKey(previousBarKey))
-				return compressedSource[previousBarKey];
-			else
-				return null;
-		}
-		
-		public override Bar getNextBar(DateTime date) {
-			string nextBarKey = null;
-			
-			DateTime startBarDate = date;
-			
-			do {
-				startBarDate = startBarDate.Add(new TimeSpan(1, 0, 0, 0, 0));
-				nextBarKey = period.keyFromTime(startBarDate);
-				
-				if (compressedSource.ContainsKey(nextBarKey)) {
-					break;
-				}
-			} while (startBarDate <= last);
-			
-			if (compressedSource.ContainsKey(nextBarKey))
-				return compressedSource[nextBarKey];
-			else
-				return null;
 		}
 		
 		private void createDailySourceFrom(IList<Bar> source) {

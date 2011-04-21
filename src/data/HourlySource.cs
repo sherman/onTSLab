@@ -19,55 +19,12 @@ namespace org.ontslab.data {
 	/// Description of HourlySource.
 	/// </summary>
 	public class HourlySource : BaseCompressedSource<Hour> {
-		private DateTime first;
-		private DateTime last;
-		
 		public HourlySource(ISecurity original) {
 			createHourlySourceFrom(original);
 		}
 		
 		public HourlySource(IList<Bar> original) {
 			createHourlySourceFrom(original);
-		}
-		
-		public override Bar getPreviousBar(DateTime date) {
-			string previousBarKey = null;
-			
-			DateTime startBarDate = date;
-			
-			do {
-				startBarDate = startBarDate.Subtract(period.getTimeSpan());
-				previousBarKey = period.keyFromTime(startBarDate);
-				
-				if (compressedSource.ContainsKey(previousBarKey)) {
-					break;
-				}
-			} while (startBarDate >= first);
-			
-			if (compressedSource.ContainsKey(previousBarKey))
-				return compressedSource[previousBarKey];
-			else
-				return null;
-		}
-		
-		public override Bar getNextBar(DateTime date) {
-			string nextBarKey = null;
-			
-			DateTime startBarDate = date;
-			
-			do {
-				startBarDate = startBarDate.Add(period.getTimeSpan());
-				nextBarKey = period.keyFromTime(startBarDate);
-				
-				if (compressedSource.ContainsKey(nextBarKey)) {
-					break;
-				}
-			} while (startBarDate <= last);
-			
-			if (compressedSource.ContainsKey(nextBarKey))
-				return compressedSource[nextBarKey];
-			else
-				return null;
 		}
 		
 		private void createHourlySourceFrom(IList<Bar> source) {
