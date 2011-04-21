@@ -17,7 +17,7 @@ namespace org.ontslab.data {
 	/// <summary>
 	/// Description of DailySource.
 	/// </summary>
-	public class DailySource {
+	public class DailySource : CompressedSource {
 		private IDictionary<string, Bar> dailySource;
 		private DateTime first;
 		private DateTime last;
