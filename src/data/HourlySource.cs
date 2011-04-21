@@ -12,13 +12,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TSLab.Script;
 using TSLab.DataSource;
+using org.ontslab.misc;
 
 namespace org.ontslab.data {
 	/// <summary>
 	/// Description of HourlySource.
 	/// </summary>
-	public class HourlySource : CompressedSource {
-		private IDictionary<string, Bar> hourlySource;
+	public class HourlySource : BaseCompressedSource<Hour> {
 		private DateTime first;
 		private DateTime last;
 		
@@ -30,55 +30,51 @@ namespace org.ontslab.data {
 			createHourlySourceFrom(original);
 		}
 		
-		public Bar getBar(DateTime date) {
-			return hourlySource[date.ToShortDateString() + "_" + date.Hour.ToString()];
-		}
-		
-		public Bar getPreviousBar(DateTime date) {
+		public override Bar getPreviousBar(DateTime date) {
 			string previousBarKey = null;
 			
 			DateTime startBarDate = date;
 			
 			do {
 				startBarDate = startBarDate.Subtract(new TimeSpan(0, 1, 0, 0, 0));
-				previousBarKey = startBarDate.ToShortDateString() + "_" + startBarDate.Hour.ToString();
+				previousBarKey = period.keyFromTime(startBarDate);
 				
-				if (hourlySource.ContainsKey(previousBarKey)) {
+				if (compressedSource.ContainsKey(previousBarKey)) {
 					break;
 				}
 			} while (startBarDate >= first);
 			
-			if (hourlySource.ContainsKey(previousBarKey))
-				return hourlySource[previousBarKey];
+			if (compressedSource.ContainsKey(previousBarKey))
+				return compressedSource[previousBarKey];
 			else
 				return null;
 		}
 		
-		public Bar getNextBar(DateTime date) {
+		public override Bar getNextBar(DateTime date) {
 			string nextBarKey = null;
 			
 			DateTime startBarDate = date;
 			
 			do {
 				startBarDate = startBarDate.Add(new TimeSpan(0, 1, 0, 0, 0));
-				nextBarKey = startBarDate.ToShortDateString() + "_" + startBarDate.Hour.ToString();
+				nextBarKey = period.keyFromTime(startBarDate);
 				
-				if (hourlySource.ContainsKey(nextBarKey)) {
+				if (compressedSource.ContainsKey(nextBarKey)) {
 					break;
 				}
 			} while (startBarDate <= last);
 			
-			if (hourlySource.ContainsKey(nextBarKey))
-				return hourlySource[nextBarKey];
+			if (compressedSource.ContainsKey(nextBarKey))
+				return compressedSource[nextBarKey];
 			else
 				return null;
 		}
 		
 		private void createHourlySourceFrom(IList<Bar> source) {
-			hourlySource = new Dictionary<string, Bar>(source.Count);
+			compressedSource = new Dictionary<string, Bar>(source.Count);
 			
 			source.ToList().ForEach(
-				bar => hourlySource.Add(bar.Date.ToShortDateString() + "_" + bar.Date.Hour.ToString(), bar)
+				bar => compressedSource.Add(period.keyFromTime(bar.Date), bar)
 			);
 			
 			first = source.First().Date;
@@ -87,7 +83,7 @@ namespace org.ontslab.data {
 		
 		private void createHourlySourceFrom(ISecurity original) {
 			ISecurity hourSource = original.CompressTo(
-				new Interval(60, DataIntervals.MINUTE)
+				new TSLab.DataSource.Interval(60, DataIntervals.MINUTE)
 			);
 			
 			IDictionary<string, Bar> newSourceBars =
@@ -104,14 +100,14 @@ namespace org.ontslab.data {
 					hour = original.Bars[i].Date.Hour;
 				}
 				
-				string key = hourSource.Bars[hourBarsIndex].Date.ToShortDateString() + "_" + hourSource.Bars[hourBarsIndex].Date.Hour.ToString();
+				string key = period.keyFromTime(hourSource.Bars[hourBarsIndex].Date);
 				
 				if (!newSourceBars.ContainsKey(key)) {
 					newSourceBars.Add(key, hourSource.Bars[hourBarsIndex]);
 				}
 			}
 			
-			this.hourlySource = newSourceBars;
+			this.compressedSource = newSourceBars;
 			this.first = original.Bars[0].Date;
 			this.last = original.Bars[original.Bars.Count - 1].Date;
 		}

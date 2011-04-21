@@ -7,29 +7,23 @@
 *   License, or (at your option) any later version.                       *
 *                                                                         *
 ***************************************************************************/
-
 using System;
+using System.Collections.Generic;
+using TSLab.Script;
+using org.ontslab.misc;
 
-namespace org.ontslab.misc
-{
+namespace org.ontslab.data {
 	/// <summary>
-	/// Description of IntervalUtils.
+	/// Description of BaseCompressedSource.
 	/// </summary>
-	public static class IntervalUtils {
-		public static string yearKey(DateTime time) {
-			return time.Year.ToString();
-		}
+	public abstract class BaseCompressedSource<T>  : CompressedSource where T : Interval, new() {
+		protected IDictionary<string, Bar> compressedSource;
+		protected T period = new T();
 		
-		public static string monthKey(DateTime time) {
-			return String.Format("{0}_{1}", time.Year, time.Month);
+		public Bar getBar(DateTime date) {
+			return compressedSource[period.keyFromTime(date)];
 		}
-		
-		public static string dayKey(DateTime time) {
-			return String.Format("{0}_{1}_{2}", time.Year, time.Month, time.Day);
-		}
-		
-		public static string hourKey(DateTime time) {
-			return String.Format("{0}_{1}_{2}_{3}", time.Year, time.Month, time.Day, time.Hour);
-		}
+		public abstract Bar getPreviousBar(DateTime date);
+		public abstract Bar getNextBar(DateTime date);
 	}
 }

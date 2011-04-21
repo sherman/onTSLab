@@ -45,4 +45,12 @@ namespace org.ontslab.misc
 		
 		public string getName() { return "day"; }
 	}
+	
+	public sealed class Hour : Interval {
+		public string keyFromTime(DateTime time) {
+			return IntervalUtils.hourKey(time);
+		}
+		
+		public string getName() { return "hour"; }
+	}
 }
