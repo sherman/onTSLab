@@ -28,12 +28,24 @@ namespace org.ontslab.trading.position {
 			return new PercentOfBalanceBasedPositionCalculator(percent, currentBalance, maxLoss);
 		}
 		
+		public static LeverageBasedPositionCalculator maxLeverage(
+			double maxLeverage,
+			double currentBalance,
+			double price
+		) {
+			return new LeverageBasedPositionCalculator(maxLeverage, currentBalance, price);
+		}
+		
 		public static FloatingStopLoss floatingStopLoss(IList<double> based, double koeff) {
 			return new FloatingStopLoss(based, koeff);
 		}
 		
 		public static AbsoluteStopLoss absoluteStopLoss(double size) {
 			return new AbsoluteStopLoss(size);
+		}
+		
+		public static MovingStopLoss movingStopLoss(double price) {
+			return new MovingStopLoss(price);
 		}
 		
 		public static AbsoluteTakeProfit absoluteTakeProfit(double size) {
