@@ -98,6 +98,7 @@
     <Compile Include="src\trading\position\Positions.cs" />
     <Compile Include="src\trading\position\StopLoss.cs" />
     <Compile Include="src\trading\position\TakeProfit.cs" />
+    <Compile Include="src\util\LimitedQueue.cs" />
     <Compile Include="test\data\DailySourceTest.cs" />
     <Compile Include="test\data\DataHelpersTest.cs" />
     <Compile Include="test\data\HourlySourceTest.cs" />
@@ -113,6 +114,7 @@
     <Folder Include="doc" />
     <Folder Include="src\data" />
     <Folder Include="src\analytic" />
+    <Folder Include="src\util" />
     <Folder Include="src\testing" />
     <Folder Include="src\trading\algorithms" />
     <Folder Include="src\misc" />
