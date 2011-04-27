@@ -17,17 +17,17 @@ namespace org.ontslab.math {
 	public static class CombinationGenerator {
 		public static void generate<T>(
 			IList<T> input,
-			IList<T> ouput,
+			IList<T> output,
 			IList<IList<T>> combinations,
 			int depth
 		) {
 			if (depth == 0) {
-				combinations.Add(new List<T>(ouput));
+				combinations.Add(new List<T>(output));
 			} else {
 				for (int i = 0; i < input.Count; i++) {
-					ouput.Add(input[i]);
-					generate(input, ouput, combinations, depth - 1);
-					ouput.RemoveAt(ouput.Count - 1);
+					output.Add(input[i]);
+					generate(input, output, combinations, depth - 1);
+					output.RemoveAt(output.Count - 1);
 				}
 			}
 		}
