@@ -27,12 +27,12 @@ namespace org.ontslab.util
    		// milliseconds
     	private int timeout;
    		public int Timeout {
-           get { return timeout; }
-           set { timeout = value; }
+			get { return timeout; }
+			set { timeout = value; }
     	}
 
 	    public TimeoutSupportWebClient() {
-	           this.timeout = 5000;
+			this.timeout = 5000;
 	    }
 		
 	    public TimeoutSupportWebClient(int timeout) {
@@ -40,9 +40,9 @@ namespace org.ontslab.util
     	}
 		
 	    protected override WebRequest GetWebRequest(Uri address) {
-	           var result = base.GetWebRequest(address);
-	           result.Timeout = this.timeout;
-	           return result;
+			var result = base.GetWebRequest(address);
+	        result.Timeout = this.timeout;
+	        return result;
 	    }
 	}
 }
