@@ -17,9 +17,32 @@ namespace org.ontslab.util
 	/// </summary>
 	public static class HttpUtils {
 		public static String get(String url) {
-        	using (WebClient client = new WebClient()) {
+        	using (TimeoutSupportWebClient client = new TimeoutSupportWebClient(1000)) {
             	return client.DownloadString(url);
         	}
 		}
+	}
+	
+	public class TimeoutSupportWebClient: WebClient {
+   		// milliseconds
+    	private int timeout;
+   		public int Timeout {
+           get { return timeout; }
+           set { timeout = value; }
+    	}
+
+	    public TimeoutSupportWebClient() {
+	           this.timeout = 5000;
+	    }
+		
+	    public TimeoutSupportWebClient(int timeout) {
+    		this.timeout = timeout;
+    	}
+		
+	    protected override WebRequest GetWebRequest(Uri address) {
+	           var result = base.GetWebRequest(address);
+	           result.Timeout = this.timeout;
+	           return result;
+	    }
 	}
 }
