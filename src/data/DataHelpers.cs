@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Sherminator
- * Date: 09.04.2011
- * Time: 19:53
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
-/***************************************************************************
+﻿/***************************************************************************
 *   Copyright (C) 2011 by Denis M. Gabaydulin                             *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +8,7 @@ using System;
 *                                                                         *
 ***************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -33,5 +33,14 @@ namespace org.ontslab.data {
 			
 			return lastPosition.Profit() < 0;
         }
+		
+		public static Bar getLastEntryBar(this ISecurity source) {
+			IPosition lastPosition = source.Positions.LastPositionClosed;
+			
+			if (null == lastPosition)
+				return null;
+			
+			return lastPosition.EntryBar;
+		}
     }
 }

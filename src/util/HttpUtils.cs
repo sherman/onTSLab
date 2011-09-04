@@ -7,22 +7,19 @@
 *   License, or (at your option) any later version.                       *
 *                                                                         *
 ***************************************************************************/
-
 using System;
+using System.Net;
 
-namespace org.ontslab.signal {
+namespace org.ontslab.util
+{
 	/// <summary>
-	/// Common stuff
+	/// Description of HttpUtils.
 	/// </summary>
-	/// 
-	
-	public sealed class Signals {
-		public const string LONG_OPEN = "LO";
-		public const string SHORT_OPEN = "SO";
-		public const string TAKE_PROFIT_CLOSE = "TP";
-		public const string STOP_LOSS_CLOSE = "SL";
-		public const string TIME_CLOSE = "TC";
-		public const string CLOSE = "C";
-		public const string VOLUME_CLOSE = "V_C";
+	public static class HttpUtils {
+		public static String get(String url) {
+        	using (WebClient client = new WebClient()) {
+            	return client.DownloadString(url);
+        	}
+		}
 	}
 }
