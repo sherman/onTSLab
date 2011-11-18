@@ -101,6 +101,7 @@
     <Compile Include="src\trading\position\Positions.cs" />
     <Compile Include="src\trading\position\StopLoss.cs" />
     <Compile Include="src\trading\position\TakeProfit.cs" />
+    <Compile Include="src\util\DateUtils.cs" />
     <Compile Include="src\util\HttpUtils.cs" />
     <Compile Include="src\util\LimitedQueue.cs" />
     <Compile Include="test\data\DailySourceTest.cs" />
