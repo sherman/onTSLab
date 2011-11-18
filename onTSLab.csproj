@@ -64,6 +64,7 @@
     <Compile Include="src\analytic\ProfitPerPeriod.cs" />
     <Compile Include="src\analytic\Trade.cs" />
     <Compile Include="src\analytic\TradeSource.cs" />
+    <Compile Include="src\bpi\Trade.cs" />
     <Compile Include="src\data\BaseCompressedSource.cs" />
     <Compile Include="src\data\CompressedSource.cs" />
     <Compile Include="src\data\DailySource.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="src\data\NotEnoughDataException.cs" />
     <Compile Include="src\data\Source.cs" />
     <Compile Include="src\math\CombinationGenerator.cs" />
-    <Compile Include="src\misc\CvsReader.cs" />
+    <Compile Include="src\misc\CsvReader.cs" />
     <Compile Include="src\misc\Interval.cs" />
     <Compile Include="src\misc\IntervalUtils.cs" />
     <Compile Include="src\signal\Signals.cs" />
@@ -106,12 +107,14 @@
     <Compile Include="test\data\DataHelpersTest.cs" />
     <Compile Include="test\data\HourlySourceTest.cs" />
     <Compile Include="test\math\CombinationGeneratorTest.cs" />
+    <Compile Include="test\misc\CsvReaderTest.cs" />
     <Compile Include="test\trading\cache\MemoryCacheManagerTest.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
     <None Include="doc\INSTALL" />
     <None Include="doc\README" />
     <None Include="doc\THANKS" />
     <None Include="examples\AnalyticTools.txt" />
+    <None Include="test\resources\azhuravlev.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="examples" />
@@ -119,6 +122,7 @@
     <Folder Include="src\data" />
     <Folder Include="src\analytic" />
     <Folder Include="src\math" />
+    <Folder Include="src\bpi" />
     <Folder Include="src\util" />
     <Folder Include="src\testing" />
     <Folder Include="src\trading\algorithms" />
@@ -132,6 +136,8 @@
     <Folder Include="src\trading\position" />
     <Folder Include="test\data" />
     <Folder Include="test\math" />
+    <Folder Include="test\misc" />
+    <Folder Include="test\resources" />
     <Folder Include="test\trading" />
     <Folder Include="test\trading\handlers" />
     <Folder Include="test\trading\cache" />

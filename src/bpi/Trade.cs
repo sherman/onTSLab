@@ -8,35 +8,37 @@
 *                                                                         *
 ***************************************************************************/
 using System;
-using System.IO;
-using System.Collections.Generic;
 
-namespace org.ontslab.misc
+namespace org.ontslab.bpi
 {
 	/// <summary>
-	/// Description of CvsReader.
+	/// Description of Trade.
 	/// </summary>
-	public class CvsReader {
-		private string fileName;
-		private string splitter;
-		private StreamReader reader;
+	public class Trade {
+		private DateTime date;
+		private double price;
+		private int size;
 		
-		public CvsReader(string fileName, string splitter) {
-			if (!File.Exists(fileName))
-				throw new FileNotFoundException("There is no such file:" + fileName);
-			
-			this.fileName = fileName;
-			this.splitter = splitter;
+		public Trade(DateTime date, double price, int size) {
+			this.date = date;
+			this.price = price;
+			this.size = size;
 		}
 		
-		public IList<IList<string>> read() {
-			reader = new StreamReader(fileName);
-			
-			do {
-				String line = reader.ReadLine();
-			} while (reader.Peek() != -1);
-			
-			return null;
+		public DateTime getDate() {
+			return date;
+		}
+		
+		public double getPrice() {
+			return price;
+		}
+		
+		public int getSize() {
+			return size;
+		}
+		
+		public override string ToString(){
+			return "{" + date + "," + price + "," + size + "}";
 		}
 	}
 }
