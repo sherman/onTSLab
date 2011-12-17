@@ -78,6 +78,8 @@
     <Compile Include="src\misc\Interval.cs" />
     <Compile Include="src\misc\IntervalUtils.cs" />
     <Compile Include="src\signal\Signals.cs" />
+    <Compile Include="src\statistic\Distribution.cs" />
+    <Compile Include="src\testing\DistributionReport.cs" />
     <Compile Include="src\testing\PnLReport.cs" />
     <Compile Include="src\testing\TradeReport.cs" />
     <Compile Include="src\trading\cache\Cache.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="src\util\DateUtils.cs" />
     <Compile Include="src\util\HttpUtils.cs" />
     <Compile Include="src\util\LimitedQueue.cs" />
+    <Compile Include="src\util\StringUtils.cs" />
     <Compile Include="test\data\DailySourceTest.cs" />
     <Compile Include="test\data\DataHelpersTest.cs" />
     <Compile Include="test\data\HourlySourceTest.cs" />
