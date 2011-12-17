@@ -142,5 +142,14 @@ namespace org.ontslab.data {
 				Take(Math.Min(period, data.Count)).
 				Min();
 		}
+		
+		public static IList<double> generateSub(IContext ctx, IList<double> source, int period) {
+			return ctx.GetData(
+				"Diff" + period.ToString(),
+				new[] {period.ToString()}, delegate {
+					return Series.Sub(source, Series.Shift(source, period));
+				}
+			);
+		}
 	}
 }

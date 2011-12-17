@@ -73,5 +73,41 @@ namespace org.ontslab.data {
 			
 			return counter;
 		}
+		
+		public static int getCountOfDownCandles(
+			IList<double> data,
+			int barIndex,
+			int bars
+		) {
+			int counter = 0;
+			for (int i = 0; i < bars; i++) {
+				double curr = data[barIndex - i];
+				double prev = data[barIndex - i - 1];
+				
+				if (curr < prev) {
+					++counter;
+				}
+			}
+			
+			return counter;
+		}
+		
+		public static int getCountOfUpCandles(
+			IList<double> data,
+			int barIndex,
+			int bars
+		) {
+			int counter = 0;
+			for (int i = 0; i < bars; i++) {
+				double curr = data[barIndex - i];
+				double prev = data[barIndex - i - 1];
+				
+				if (curr > prev) {
+					++counter;
+				}
+			}
+			
+			return counter;
+		}
 	}
 }

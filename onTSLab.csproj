@@ -124,6 +124,7 @@
     <Folder Include="src\analytic" />
     <Folder Include="src\math" />
     <Folder Include="src\bpi" />
+    <Folder Include="src\statistic" />
     <Folder Include="src\util" />
     <Folder Include="src\testing" />
     <Folder Include="src\trading\algorithms" />

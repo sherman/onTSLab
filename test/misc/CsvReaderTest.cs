@@ -33,6 +33,7 @@ namespace org.ontslab.test.misc
 			IList<Trade> trades = csvReader.read(
 				parts => {
 					Trade trade = new Trade(
+						1,
 						DateTime.Parse(parts[3]),
 						double.Parse(parts[5].Split('.')[0]),
 						int.Parse(parts[2])

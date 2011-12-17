@@ -18,11 +18,17 @@ namespace org.ontslab.bpi
 		private DateTime date;
 		private double price;
 		private int size;
+		private int id;
 		
-		public Trade(DateTime date, double price, int size) {
+		public Trade(int id, DateTime date, double price, int size) {
 			this.date = date;
 			this.price = price;
 			this.size = size;
+			this.id = id;
+		}
+		
+		public int getId() {
+			return id;
 		}
 		
 		public DateTime getDate() {
@@ -39,6 +45,10 @@ namespace org.ontslab.bpi
 		
 		public override string ToString(){
 			return "{" + date + "," + price + "," + size + "}";
+		}
+		
+		public bool isShort() {
+			return getSize() < 0;
 		}
 	}
 }
