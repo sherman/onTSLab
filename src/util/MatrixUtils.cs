@@ -39,7 +39,7 @@ namespace org.ontslab.util
 			for (int i = 0; i < len; i++) {
  				for (int j = i + 1; j < len; j++) {
 					distances[i,j] = func(matrix, i, j);
-  					distances[j,i] = distances[j,i];
+  					distances[j,i] = func(matrix, i, j);
 				}
 				distances[i,i] = defaultValue;
 			}
