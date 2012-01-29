@@ -47,7 +47,7 @@ namespace org.ontslab.util
 			return distances;
 		}
 		
-		public static T[,] getSlice<T>(IContext ctx, T[,] matrix, int[] rowIndices, int[] colIndices) {
+		public static T[,] getSlice<T>(T[,] matrix, int[] rowIndices, int[] colIndices) {
 			T[,] slice = new T[rowIndices.Length, colIndices.Length];
 			int sliceRows = 0, sliceCols = 0;
 			
