@@ -11,6 +11,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using TSLab.Script;
+using TSLab.Script.Handlers;
+using TSLab.Script.Optimization;
+using TSLab.Script.Helpers;
+using TSLab.DataSource;
+using TSLab.Script.Realtime;
+
+
 namespace org.ontslab.util
 {
 	/// <summary>
@@ -34,7 +42,7 @@ namespace org.ontslab.util
 		) {
 			long len = matrix.Length;
 
-			T[,] distances = new T[len,len];
+			T[,] distances = new T[len, len];
 			
 			for (int i = 0; i < len; i++) {
  				for (int j = i + 1; j < len; j++) {
@@ -45,6 +53,26 @@ namespace org.ontslab.util
 			}
 			
 			return distances;
+		}
+		
+		public static T[,] getSlice<T>(IContext ctx, T[,] matrix, int[] rowIndices, int[] colIndices) {
+			T[,] slice = new T[rowIndices.Length, colIndices.Length];
+			int sliceRows = 0, sliceCols = 0;
+			
+			rowIndices.ToList().ForEach(
+				rowIndex => {
+					colIndices.ToList().ForEach(
+						colIndex => {
+							slice[sliceRows, sliceCols++] = matrix[rowIndex, colIndex];
+						}
+					);
+						
+					sliceRows++;
+					sliceCols = 0;
+				}
+			);
+			
+			return slice;
 		}
 	}
 }
