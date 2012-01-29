@@ -22,13 +22,15 @@ namespace org.ontslab.util
 			Dictionary<T, double> eltToRanks = new Dictionary<T, double>();
 			List<double> ranks = new List<double>();
 			List<T> copy = new List<T>(list);
-			double rank = 1d;
+			int rank = 1;
 			double actualRank = 0;
 			T current = default(T);
+			// this flag is required because default value can equals to the first in the copy list
+			bool started = false;
 			copy.Sort();
 			copy.ForEach(
 				elt => {
-					if (!current.Equals(elt)) {
+					if (!current.Equals(elt) || !started) {
 						current = elt;
 						int count = copy.Count( nextElt => nextElt.Equals(current) );
 						
@@ -39,6 +41,7 @@ namespace org.ontslab.util
 						}
 						
 						actualRank = sum / count;
+						started = true;
 					}
 					
 					if (!eltToRanks.ContainsKey(current)) {
