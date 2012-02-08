@@ -20,9 +20,19 @@ namespace org.ontslab.util
 		public delegate T DistFunction<T>(T[,] matrix, int i, int j);
 		
 		public static T[,] asMatrix<T>(IList<T> data) {
-			T[,] matrix = new T[1,data.Count];
+			T[,] matrix = new T[1, data.Count];
 			for (int i = 0; i < data.Count; i++) {
 				matrix[0,i] = data[i];
+			}
+			return matrix;
+		}
+		
+		public static T[,] asMatrix<T>(IList<T> data, int rows, int cols) {
+			T[,] matrix = new T[rows, cols];
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					matrix[i,j] = data[i];
+				}
 			}
 			return matrix;
 		}
@@ -34,14 +44,14 @@ namespace org.ontslab.util
 		) {
 			long len = matrix.Length;
 
-			T[,] distances = new T[len, len];
+			T[,] distances = new T[matrix.GetLength(0), matrix.GetLength(0)];
 			
-			for (int i = 0; i < len; i++) {
- 				for (int j = i + 1; j < len; j++) {
-					distances[i,j] = func(matrix, i, j);
-  					distances[j,i] = func(matrix, i, j);
+			for (int i = 0; i < distances.GetLength(0); i++) {
+				for (int j = i + 1; j < distances.GetLength(1); j++) {
+					distances[j, i] = func(matrix, j - i - 1, j);
+  					distances[i, j] = func(matrix, j - i - 1, j);
 				}
-				distances[i,i] = defaultValue;
+				distances[i, i] = defaultValue;
 			}
 			
 			return distances;
