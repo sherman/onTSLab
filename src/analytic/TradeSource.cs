@@ -19,10 +19,19 @@ namespace org.ontslab.analytic
 	/// </summary>
 	public class TradeSource {
 		private ISecurity source;
+		private int fromBar;
+		private int toBar;
 		private List<Trade> trades = new List<Trade>();
 		private bool fetched = false;
 		
-		public TradeSource(ISecurity source) { this.source = source; }
+		public TradeSource(ISecurity source) : this(source, 0, source.Bars.Count) {
+		}
+		
+		public TradeSource(ISecurity source, int fromBar, int toBar) {
+			this.source = source;
+			this.fromBar = fromBar;
+			this.toBar = toBar;
+		}
 		
 		public ISecurity getBaseSource() {
 			return source;
@@ -56,11 +65,15 @@ namespace org.ontslab.analytic
 			IEnumerator<IPosition> positionEnum = source.Positions.GetEnumerator();
 			
 			while (positionEnum.MoveNext()) {
-				if (!positionEnum.Current.IsActive) {
+				if (
+					positionEnum.Current.EntryBarNum > fromBar
+					&& positionEnum.Current.EntryBarNum <= toBar
+					&& !positionEnum.Current.IsActive
+				) {
 					Trade trade = new Trade(
 						positionEnum.Current.EntryBar,
 						positionEnum.Current.ExitBar,
-						positionEnum.Current.Profit()
+						positionEnum.Current.Profit() / positionEnum.Current.Shares
 					);
 					
 					trades.Add(trade);
