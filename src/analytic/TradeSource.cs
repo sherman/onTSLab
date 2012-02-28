@@ -73,7 +73,9 @@ namespace org.ontslab.analytic
 					Trade trade = new Trade(
 						positionEnum.Current.EntryBar,
 						positionEnum.Current.ExitBar,
-						positionEnum.Current.Profit() / positionEnum.Current.Shares
+						positionEnum.Current.IsLong
+							? (positionEnum.Current.ExitPrice - positionEnum.Current.EntryPrice)
+							: (positionEnum.Current.EntryPrice - positionEnum.Current.ExitPrice)
 					);
 					
 					trades.Add(trade);
