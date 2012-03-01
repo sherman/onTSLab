@@ -1,14 +1,5 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Sherminator
- * Date: 10.04.2011
- * Time: 18:22
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
-/***************************************************************************
-*   Copyright (C) 2011 by Denis M. Gabaydulin                             *
+﻿/***************************************************************************
+*   Copyright (C) 2011-2012 by Denis M. Gabaydulin                        *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
 *   it under the terms of the GNU Lesser General Public License as        *
@@ -18,6 +9,9 @@ using System;
 ***************************************************************************/
 
 using TSLab.Script;
+using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace org.ontslab.data {
 	/// <summary>
@@ -41,6 +35,17 @@ namespace org.ontslab.data {
 				return null;
 			
 			return lastPosition.EntryBar;
+		}
+		
+		public static IPosition getFirstTrade(this ISecurity source) {
+			IEnumerator<IPosition> positionEnum = source.Positions.GetEnumerator();
+			while (positionEnum.MoveNext()) {
+				if (!positionEnum.Current.IsActive) {
+					return positionEnum.Current;
+				}
+			}
+			
+			return null;
 		}
     }
 }
