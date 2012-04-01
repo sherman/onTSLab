@@ -17,7 +17,7 @@ namespace org.ontslab.util
 	/// Description of MatrixUtils.
 	/// </summary>
 	public static class MatrixUtils {
-		public delegate T DistFunction<T>(T[,] matrix, int i, int j);
+		public delegate T DistFunction<T>(IList<T> list, int rows, int cols, int i, int j);
 		
 		public static T[,] asMatrix<T>(IList<T> data) {
 			T[,] matrix = new T[1, data.Count];
@@ -31,7 +31,7 @@ namespace org.ontslab.util
 			T[,] matrix = new T[rows, cols];
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
-					matrix[i,j] = data[i];
+					matrix[i, j] = data[j];
 				}
 			}
 			return matrix;
@@ -42,15 +42,36 @@ namespace org.ontslab.util
 			DistFunction<T> func,
 			T defaultValue
 		) {
-			long len = matrix.Length;
-
-			T[,] distances = new T[matrix.GetLength(0), matrix.GetLength(0)];
+			List<T> valuesList = ListUtils.asList(matrix);
+			List<T> distValuesList = new List<T>(valuesList.Count);
+			T[,] distances = new T[matrix.GetLength(1), matrix.GetLength(1)];
 			
+			for (int i = 0; i <= matrix.GetLength(1); i++) {
+				for (int j = i + 1; j < matrix.GetLength(1); j++) {
+					var dist = func(
+						valuesList,
+						matrix.GetLength(1),
+						matrix.GetLength(0),
+						j,
+						i
+					);
+					
+					distValuesList.Add(dist);
+				}
+			}
+			
+			// convert list to matrix
 			for (int i = 0; i < distances.GetLength(0); i++) {
 				for (int j = i + 1; j < distances.GetLength(1); j++) {
-					distances[j, i] = func(matrix, j - i - 1, j);
-  					distances[i, j] = func(matrix, j - i - 1, j);
+					if (i == 0 || j == 0) {
+						distances[i, j] = distValuesList[i + j - 1];
+						distances[j, i] = distValuesList[i + j - 1];
+					} else {
+						distances[i, j] = distValuesList[i + j];
+						distances[j, i] = distValuesList[i + j];
+					}
 				}
+				
 				distances[i, i] = defaultValue;
 			}
 			
