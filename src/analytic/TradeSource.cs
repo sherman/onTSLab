@@ -52,10 +52,18 @@ namespace org.ontslab.analytic
 			
 			IDictionary<int, Trade> barIndexedTrades = new Dictionary<int, Trade>();
 			
-			trades.ForEach(trade => barIndexedTrades.Add(
-					source.Bars.IndexOf(trade.getEntry()),
-					trade
-				)
+			// TODO: add ability to store multiple trades for one bar
+			trades.ForEach(
+				trade => {
+					int barIndex = source.Bars.IndexOf(trade.getEntry());
+					
+					if (!barIndexedTrades.ContainsKey(barIndex)) {
+						barIndexedTrades.Add(
+							source.Bars.IndexOf(trade.getEntry()),
+							trade
+						);
+					}
+				}
 			);
 			
 			return barIndexedTrades;
