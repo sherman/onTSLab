@@ -65,7 +65,7 @@ namespace org.ontslab.util
 			int index1 = 0;
 			int index2 = 0;
 			
-			// TODO: find more elegant way of proper index calulcation
+			// TODO: find more elegant way of proper index calculation
 			
 			// convert list to matrix
 			for (int i = 0; i < distances.GetLength(0); i++) {
