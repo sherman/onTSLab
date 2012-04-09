@@ -30,8 +30,9 @@ namespace org.ontslab.util
 		public static T[,] asMatrix<T>(IList<T> data, int rows, int cols) {
 			T[,] matrix = new T[rows, cols];
 			for (int i = 0; i < rows; i++) {
+				int offset = i * cols;
 				for (int j = 0; j < cols; j++) {
-					matrix[i, j] = data[j];
+					matrix[i, j] = data[j + offset];
 				}
 			}
 			return matrix;
@@ -44,14 +45,15 @@ namespace org.ontslab.util
 		) {
 			List<T> valuesList = ListUtils.asList(matrix);
 			List<T> distValuesList = new List<T>(valuesList.Count);
-			T[,] distances = new T[matrix.GetLength(1), matrix.GetLength(1)];
 			
-			for (int i = 0; i <= matrix.GetLength(1); i++) {
-				for (int j = i + 1; j < matrix.GetLength(1); j++) {
+			T[,] distances = new T[matrix.GetLength(0), matrix.GetLength(0)];
+			
+			for (int i = 0; i <= matrix.GetLength(0); i++) {
+				for (int j = i + 1; j < matrix.GetLength(0); j++) {
 					var dist = func(
 						valuesList,
-						matrix.GetLength(1),
 						matrix.GetLength(0),
+						matrix.GetLength(1),
 						j,
 						i
 					);
@@ -60,15 +62,20 @@ namespace org.ontslab.util
 				}
 			}
 			
+			int index1 = 0;
+			int index2 = 0;
+			
+			// TODO: find more elegant way of proper index calulcation
+			
 			// convert list to matrix
 			for (int i = 0; i < distances.GetLength(0); i++) {
-				for (int j = i + 1; j < distances.GetLength(1); j++) {
-					if (i == 0 || j == 0) {
-						distances[i, j] = distValuesList[i + j - 1];
-						distances[j, i] = distValuesList[i + j - 1];
-					} else {
-						distances[i, j] = distValuesList[i + j];
-						distances[j, i] = distValuesList[i + j];
+				for (int j = i + 1; j < distances.GetLength(0); j++) {
+					if (index1 < distValuesList.Count) {
+						distances[i, j] = distValuesList[index1++];
+					}
+					
+					if (index2 < distValuesList.Count) {
+						distances[j, i] = distValuesList[index2++];
 					}
 				}
 				
