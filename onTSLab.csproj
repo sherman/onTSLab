@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{805C3303-9128-4CFE-AC80-E4E4B4EEE625}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,10 +7,11 @@
     <OutputType>Library</OutputType>
     <RootNamespace>org.ontslab</RootNamespace>
     <AssemblyName>onTSLab</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Sherminator\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -46,16 +48,10 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="TSLab.DataSource">
-      <HintPath>..\..\..\..\TSLab\TSLab.DataSource.dll</HintPath>
+      <HintPath>..\..\TSLab 1.2\TSLab.DataSource.dll</HintPath>
     </Reference>
     <Reference Include="TSLab.Script">
-      <HintPath>..\..\..\..\TSLab\TSLab.Script.dll</HintPath>
-    </Reference>
-    <Reference Include="TSLab.Script.Handlers">
-      <HintPath>..\..\..\..\TSLab\TSLab.Script.Handlers.dll</HintPath>
-    </Reference>
-    <Reference Include="TSLab.ScriptEngine">
-      <HintPath>..\..\..\..\TSLab\TSLab.ScriptEngine.dll</HintPath>
+      <HintPath>..\..\TSLab 1.2\TSLab.Script.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +69,7 @@
     <Compile Include="src\data\HourlySource.cs" />
     <Compile Include="src\data\NotEnoughDataException.cs" />
     <Compile Include="src\data\Source.cs" />
+    <Compile Include="src\indicators\Adx.cs" />
     <Compile Include="src\math\CombinationGenerator.cs" />
     <Compile Include="src\misc\CsvReader.cs" />
     <Compile Include="src\misc\Interval.cs" />
@@ -127,6 +124,7 @@
     <Folder Include="src\analytic" />
     <Folder Include="src\math" />
     <Folder Include="src\bpi" />
+    <Folder Include="src\indicators" />
     <Folder Include="src\statistic" />
     <Folder Include="src\util" />
     <Folder Include="src\testing" />
