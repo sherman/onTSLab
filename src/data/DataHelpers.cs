@@ -38,7 +38,7 @@ namespace org.ontslab.data {
 		}
 		
 		public static IList<double> generateADX(IContext ctx, ISecurity source, int period) {
-			ADXFull generator = new ADXFull();			
+			ADXFull generator = new ADXFull();
 			generator.Context = ctx;
 			generator.Period = period;
 			
