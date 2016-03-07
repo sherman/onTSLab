@@ -109,5 +109,18 @@ namespace org.ontslab.data {
 			
 			return counter;
 		}
+
+        public static double getSumOfList(
+            IList<double> data,
+            int barIndex,
+            int bars
+        ) {
+            double sum = 0;
+            for (int i = 0; i < bars; i++) {
+                sum += data[barIndex - i];
+            }
+
+            return sum;
+        }
 	}
 }

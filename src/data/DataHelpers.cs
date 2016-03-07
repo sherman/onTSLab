@@ -38,7 +38,7 @@ namespace org.ontslab.data {
 		}
 		
 		public static IList<double> generateADX(IContext ctx, ISecurity source, int period) {
-			ADXFull generator = new ADXFull();
+			ADXFull generator = new ADXFull();			
 			generator.Context = ctx;
 			generator.Period = period;
 			
@@ -150,6 +150,22 @@ namespace org.ontslab.data {
 					return Series.Sub(source, Series.Shift(source, period));
 				}
 			);
+		}
+		
+		public static IList<double> generateLn(IList<double> data) {
+			return data.Select(elt => elt > 0 ? Math.Log(elt) : 0).ToList();
+		}
+		
+		public static IList<double> generateDiv(IList<double> dividend, IList<double> divisor) {
+			return dividend.Select((elt, index) => divisor[index] > 0 ? elt / divisor[index] : 0).ToList();
+		}
+		
+		public static IList<double> generateSub(IList<double> one, IList<double> two) {
+			return one.Select((elt, index) => elt - two[index]).ToList();
+		}
+
+		public static IList<double> generatePow(IList<double> data, double pow) {
+			return data.Select(elt => elt > 0 ? Math.Pow(elt, pow) : 0).ToList();
 		}
 	}
 }
