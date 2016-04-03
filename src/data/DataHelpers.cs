@@ -114,7 +114,27 @@ namespace org.ontslab.data {
 				}
 			);
 		}
-		
+
+		public static IList<double> generateShift(IList<double> source, int period) {
+			List<double> result = new List<double>();
+			if (period < 0) {
+				int absPeriod = Math.Abs(period);
+				result = source.Skip(absPeriod).Take(source.Count - absPeriod).ToList();
+				for (int i = 0; i < absPeriod; i++) {
+					result.Add(0);
+				}
+			} else if(period > 0) {
+				for (int i = 0; i < Math.Abs(period); i++) {
+					result.Add(0);
+				}
+				result.AddRange(source.Skip(period).ToList());
+			} else {
+				return source;
+			}
+
+			return result;
+		}
+
 		public static IList<double> generateStDev(IContext ctx, IList<double> source, int period) {
 			return ctx.GetData(
 				"STDEV" + period.ToString(),
