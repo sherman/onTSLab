@@ -22,7 +22,7 @@ namespace org.ontslab.data {
 	/// Description of DataHelpers.
 	/// </summary>
 	public static class DataHelpers {
-		public static IList<double> roundList(IList<Double> data, int precision) {
+		public static IList<double> roundList(IList<double> data, int precision) {
 			return data.Select(
 				elt => Math.Round(elt, precision) 
 			).ToList();
@@ -66,14 +66,18 @@ namespace org.ontslab.data {
 		public static IList<double> generateSMA(IContext ctx, ISecurity source, int period) {
 			return generateSMA(ctx, source.ClosePrices, period);
 		}
-		
-		public static IList<double> generateSMA(IContext ctx, IList<double> source, int period) {
+
+		public static IList<double> generateSMA(IContext ctx, IList<double> source, int period, string cacheLabel) {
 			return ctx.GetData(
 				"SMA" + period.ToString(),
-				new[] {period.ToString()}, delegate {
+				new[] { cacheLabel }, delegate {
 					return Series.SMA(source, period);
 				}
 			);
+		}
+
+		public static IList<double> generateSMA(IContext ctx, IList<double> source, int period) {
+			return generateSMA(ctx, source, period, period.ToString());
 		}
 		
 		public static IList<double> generateHighest(IContext ctx, ISecurity source, int period) {
@@ -166,6 +170,10 @@ namespace org.ontslab.data {
 
 		public static IList<double> generatePow(IList<double> data, double pow) {
 			return data.Select(elt => elt > 0 ? Math.Pow(elt, pow) : 0).ToList();
+		}
+
+		public static IList<decimal> toDecimal(IList<double> data) {
+			return data.Select(elt => (decimal) elt).ToList();
 		}
 	}
 }
