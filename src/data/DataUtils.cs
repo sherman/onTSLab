@@ -38,7 +38,28 @@ namespace org.ontslab.data {
 			
 			return true;
 		}
-		
+
+		public static bool isIndicatorDowns(
+			IList<double> data,
+			int barIndex,
+			int bars,
+			double tresholdValue
+		) {
+			if (barIndex - bars < 0) {
+				throw new NotEnoughDataException("Not enough data!");
+			}
+
+			for (int i = 0; i < bars; i++) {
+				double currValue = data[barIndex - i];
+				double prevValue = data[barIndex - (i + 1)];
+
+				if (prevValue < currValue || (prevValue - currValue) < tresholdValue)
+					return false;
+			}
+
+			return true;
+		}
+
 		public static int getDirectionChangingCount(
 			IList<double> data,
 			int barIndex,
