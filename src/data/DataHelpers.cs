@@ -175,6 +175,24 @@ namespace org.ontslab.data {
 				}
 			);
 		}
+
+		public static IList<double> generateMean(IList<double> one, IList<double> two, int period) {
+			IList<double> result = new List<double>();
+
+			for (int i = 0; i < one.Count; i++) {
+				double sum = 0.0;
+				for (int j = 0; j < period; j++) {
+					if (i - j < 0) {
+						sum += 0;
+					} else {
+						sum += one[i - j] * two[i - j];
+					}
+				}
+				result.Add(sum / period);
+			}
+
+			return result;
+		}
 		
 		public static IList<double> generateLn(IList<double> data) {
 			return data.Select(elt => elt > 0 ? Math.Log(elt) : 0).ToList();
@@ -194,6 +212,37 @@ namespace org.ontslab.data {
 
 		public static IList<decimal> toDecimal(IList<double> data) {
 			return data.Select(elt => (decimal) elt).ToList();
+		}
+
+		public static IList<double> generateVariance(IList<double> data, int period) {
+			IList<double> result = new List<double>();
+
+			for (int i = 0; i < data.Count; i++) {
+				double squareSum = 0.0;
+				double sum = 0.0;
+
+				// calc average
+				for (int j = 0; j < period; j++) {
+					if (i - j < 0) {
+						sum += 0;
+					} else {
+						sum += data[i - j];
+					}
+				}
+				double avg = sum / period;
+
+				for (int j = 0; j < period; j++) {
+					if (i - j < 0) {
+						squareSum += 0;
+					} else {
+						squareSum += Math.Pow(data[i - j] - avg, 2);
+					}
+				}
+
+				result.Add(squareSum / period);
+			}
+
+			return result;
 		}
 	}
 }
