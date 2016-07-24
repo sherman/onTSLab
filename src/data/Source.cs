@@ -19,7 +19,11 @@ namespace org.ontslab.data {
 	/// </summary>
 	
 	public static class SecurityExtensions {
-        public static bool isLastTradeLoss(this ISecurity source) {
+		public static IList<IPosition> getLastPosititons(this ISecurity source, int count) {
+			return source.Positions.Where(postition => !postition.IsActive).Skip(source.Positions.Count() - count).ToList();
+		}
+
+		public static bool isLastTradeLoss(this ISecurity source) {
             IPosition lastPosition = source.Positions.LastPositionClosed;
 			
 			if (null == lastPosition)

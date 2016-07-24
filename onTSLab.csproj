@@ -118,31 +118,6 @@
     <None Include="test\resources\azhuravlev.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="examples" />
-    <Folder Include="doc" />
-    <Folder Include="src\data" />
-    <Folder Include="src\analytic" />
-    <Folder Include="src\math" />
-    <Folder Include="src\bpi" />
-    <Folder Include="src\indicators" />
-    <Folder Include="src\statistic" />
-    <Folder Include="src\util" />
-    <Folder Include="src\testing" />
-    <Folder Include="src\trading\algorithms" />
-    <Folder Include="src\misc" />
-    <Folder Include="src\trading\cache" />
-    <Folder Include="test" />
-    <Folder Include="src\trading" />
-    <Folder Include="src" />
-    <Folder Include="src\signal" />
-    <Folder Include="src\trading\handlers" />
-    <Folder Include="src\trading\position" />
-    <Folder Include="test\data" />
-    <Folder Include="test\math" />
-    <Folder Include="test\misc" />
-    <Folder Include="test\resources" />
-    <Folder Include="test\trading" />
-    <Folder Include="test\trading\handlers" />
-    <Folder Include="test\trading\cache" />
+    <Folder Include="src\trading\algorithms\" />
   </ItemGroup>
 </Project>
