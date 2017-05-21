@@ -1,5 +1,5 @@
 ﻿/***************************************************************************
-*   Copyright (C) 2011 by Denis M. Gabaydulin                             *
+*   Copyright (C) 2011-2017 by Denis M. Gabaydulin                        *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
 *   it under the terms of the GNU Lesser General Public License as        *
@@ -76,6 +76,10 @@ namespace org.ontslab.data {
 				return compressedSource[nextBarKey];
 			else
 				return null;
+		}
+
+		public IList<Bar> getBars() {
+			return compressedSource.Values.ToList();
 		}
 	}
 }
