@@ -27,12 +27,21 @@ namespace org.ontslab.data {
 				elt => Math.Round(elt, precision) 
 			).ToList();
 		}
-		
+
 		public static IList<double> generateATR(IContext ctx, ISecurity source, int period) {
 			return ctx.GetData(
 				"ATR" + period.ToString(),
-				new[] {period.ToString()}, delegate {
+				new[] { period.ToString() }, delegate {
 					return Series.AverageTrueRange(source.Bars, period);
+				}
+			);
+		}
+
+		public static IList<double> generateATR(IContext ctx, IList<Bar> data, int period) {
+			return ctx.GetData(
+				"ATR" + period.ToString(),
+				new[] {period.ToString()}, delegate {
+					return Series.AverageTrueRange(data, period);
 				}
 			);
 		}
@@ -201,7 +210,11 @@ namespace org.ontslab.data {
 		public static IList<double> generateDiv(IList<double> dividend, IList<double> divisor) {
 			return dividend.Select((elt, index) => divisor[index] > 0 ? elt / divisor[index] : 0).ToList();
 		}
-		
+
+		public static IList<double> generateMul(IList<double> data, IList<double> multiplier) {
+			return data.Select((elt, index) => data[index] * multiplier[index]).ToList();
+		}
+
 		public static IList<double> generateSub(IList<double> one, IList<double> two) {
 			return one.Select((elt, index) => elt - two[index]).ToList();
 		}
