@@ -66,11 +66,13 @@
     <Compile Include="src\data\DailySource.cs" />
     <Compile Include="src\data\DataHelpers.cs" />
     <Compile Include="src\data\DataUtils.cs" />
+    <Compile Include="src\data\FifteenMinuteSource.cs" />
     <Compile Include="src\data\HourlySource.cs" />
     <Compile Include="src\data\NotEnoughDataException.cs" />
     <Compile Include="src\data\Source.cs" />
     <Compile Include="src\indicators\Adx.cs" />
     <Compile Include="src\math\CombinationGenerator.cs" />
+    <Compile Include="src\misc\CsvWriter.cs" />
     <Compile Include="src\misc\CsvReader.cs" />
     <Compile Include="src\misc\Interval.cs" />
     <Compile Include="src\misc\IntervalUtils.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="test\data\HourlySourceTest.cs" />
     <Compile Include="test\math\CombinationGeneratorTest.cs" />
     <Compile Include="test\misc\CsvReaderTest.cs" />
+    <Compile Include="test\misc\IntervalUtilsTest.cs" />
     <Compile Include="test\trading\cache\MemoryCacheManagerTest.cs" />
     <Compile Include="test\trading\handlers\ProfitPerMonthTest.cs" />
     <None Include="doc\INSTALL" />

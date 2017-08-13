@@ -31,5 +31,10 @@ namespace org.ontslab.misc
 		public static string hourKey(DateTime time) {
 			return String.Format("{0}_{1}_{2}_{3}", time.Year, time.Month, time.Day, time.Hour);
 		}
+
+		public static string fifteenMinutesKey(DateTime time) {
+			var minutes = time.AddMinutes(-(time.Minute % 15)).Minute;
+			return String.Format("{0}_{1}_{2}_{3}_{4}", time.Year, time.Month, time.Day, time.Hour, minutes);
+		}
 	}
 }

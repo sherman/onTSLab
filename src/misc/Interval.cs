@@ -70,4 +70,16 @@ namespace org.ontslab.misc
 			return new TimeSpan(0, 1, 0, 0);
 		}
 	}
+
+	public sealed class FifteenMinutes : Interval {
+		public string keyFromTime(DateTime time) {
+			return IntervalUtils.fifteenMinutesKey(time);
+		}
+		
+		public string getName() { return "15_minutes"; }
+		
+		public TimeSpan getTimeSpan() {
+			return new TimeSpan(0, 0, 15, 0);
+		}
+	}
 }

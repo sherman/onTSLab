@@ -25,22 +25,44 @@ namespace org.ontslab.data {
 
 		public static bool isLastTradeLoss(this ISecurity source) {
             IPosition lastPosition = source.Positions.LastPositionClosed;
-			
-			if (null == lastPosition)
+
+			if (null == lastPosition) {
 				return false;
+			}
 			
 			return lastPosition.Profit() < 0;
         }
+
+		public static double getLastTradeProfit(this ISecurity source) {
+			IPosition lastPosition = source.Positions.LastPositionClosed;
+
+			if (null == lastPosition) {
+				return -1;
+			}
+
+			return lastPosition.Profit();
+		}
 		
 		public static Bar getLastEntryBar(this ISecurity source) {
 			IPosition lastPosition = source.Positions.LastPositionClosed;
-			
-			if (null == lastPosition)
+
+			if (null == lastPosition) {
 				return null;
+			}
 			
 			return lastPosition.EntryBar;
 		}
-		
+
+		public static int getLastEntryBarNum(this ISecurity source) {
+			IPosition lastPosition = source.Positions.LastPositionClosed;
+
+			if (null == lastPosition) {
+				return -1;
+			}
+
+			return lastPosition.EntryBarNum;
+		}
+
 		public static IPosition getFirstTrade(this ISecurity source) {
 			IEnumerator<IPosition> positionEnum = source.Positions.GetEnumerator();
 			while (positionEnum.MoveNext()) {

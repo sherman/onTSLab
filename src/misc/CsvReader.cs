@@ -39,7 +39,10 @@ namespace org.ontslab.misc
 				String line = reader.ReadLine();
 				result.Add(lineHandler(line.Split(separator.ToCharArray())));
 			} while (reader.Peek() != -1);
-			
+
+			reader.Close();
+
+
 			return result;
 		}
 	}
