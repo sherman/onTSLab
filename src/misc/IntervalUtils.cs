@@ -36,5 +36,11 @@ namespace org.ontslab.misc
 			var minutes = time.AddMinutes(-(time.Minute % 15)).Minute;
 			return String.Format("{0}_{1}_{2}_{3}_{4}", time.Year, time.Month, time.Day, time.Hour, minutes);
 		}
+		
+		public static string fifteenMinutesKey(DateTime time, int shift) {
+			var diff = ((time.Minute + -1 * shift) % 15);
+			var minutes = time.AddMinutes(-diff).Minute;
+			return String.Format("{0}_{1}_{2}_{3}_{4}", time.Year, time.Month, time.Day, time.Hour, minutes);
+		}
 	}
 }
