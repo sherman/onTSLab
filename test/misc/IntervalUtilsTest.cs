@@ -30,6 +30,7 @@ namespace org.ontslab.test.misc {
             Assert.AreEqual("2017_1_10_15_14", IntervalUtils.fifteenMinutesKey(DateTime.Parse("2017-01-10T12:14:59.000Z"), -1));
             Assert.AreEqual("2017_1_10_15_59", IntervalUtils.fifteenMinutesKey(DateTime.Parse("2017-01-10T12:59:44.000Z"), -1));
             Assert.AreEqual("2017_1_10_15_29", IntervalUtils.fifteenMinutesKey(DateTime.Parse("2017-01-10T12:31:44.000Z"), -1));
+            Assert.AreEqual("2017_1_10_20_59", IntervalUtils.fifteenMinutesKey(DateTime.Parse("2017-01-10T18:00:00.000Z"), -1));
             
             Assert.AreEqual("2017_1_10_15_1", IntervalUtils.fifteenMinutesKey(DateTime.Parse("2017-01-10T12:14:59.000Z"), 1));
             Assert.AreEqual("2017_1_10_15_46", IntervalUtils.fifteenMinutesKey(DateTime.Parse("2017-01-10T12:59:44.000Z"), 1));
