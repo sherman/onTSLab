@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>org.ontslab</RootNamespace>
     <AssemblyName>onTSLab</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Sherminator\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
@@ -47,11 +47,14 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TSLab.DataSource">
-      <HintPath>..\..\TSLab 1.2\TSLab.DataSource.dll</HintPath>
+    <Reference Include="TSLab.DataSource, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.0\TSLab.DataSource.dll</HintPath>
     </Reference>
-    <Reference Include="TSLab.Script">
-      <HintPath>..\..\TSLab 1.2\TSLab.Script.dll</HintPath>
+    <Reference Include="TSLab.Script, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
+    </Reference>
+    <Reference Include="TSLab.Script, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

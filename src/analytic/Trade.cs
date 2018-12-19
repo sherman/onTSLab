@@ -9,6 +9,7 @@
 ***************************************************************************/
 
 using System;
+using TSLab.DataSource;
 using TSLab.Script;
 
 namespace org.ontslab.analytic
@@ -17,21 +18,21 @@ namespace org.ontslab.analytic
 	/// Trivia representation of a closed(inactive) trade.
 	/// </summary>
 	public sealed class Trade {
-		private Bar entry;
-		private Bar exit;
+		private IDataBar entry;
+		private IDataBar exit;
 		private double profit;
 		
-		public Trade(Bar entry, Bar exit, double profit) {
+		public Trade(IDataBar entry, IDataBar exit, double profit) {
 			this.entry = entry;
 			this.exit = exit;
 			this.profit = profit;
 		}
 		
-		public Bar getEntry() {
+		public IDataBar getEntry() {
 			return entry;
 		}
 		
-		public Bar getExit() {
+		public IDataBar getExit() {
 			return exit;
 		}
 		

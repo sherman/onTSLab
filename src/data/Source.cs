@@ -12,6 +12,7 @@ using TSLab.Script;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using TSLab.DataSource;
 
 namespace org.ontslab.data {
 	/// <summary>
@@ -23,8 +24,8 @@ namespace org.ontslab.data {
 			return source.Positions.Where(postition => !postition.IsActive).Skip(source.Positions.Count() - count).ToList();
 		}
 
-		public static bool isLastTradeLoss(this ISecurity source) {
-            IPosition lastPosition = source.Positions.LastPositionClosed;
+		public static bool isLastTradeLoss(this ISecurity source, int barIndex) {
+            IPosition lastPosition = source.Positions.GetLastPositionClosed(barIndex);
 
 			if (null == lastPosition) {
 				return false;
@@ -33,8 +34,8 @@ namespace org.ontslab.data {
 			return lastPosition.Profit() < 0;
         }
 
-		public static double getLastTradeProfit(this ISecurity source) {
-			IPosition lastPosition = source.Positions.LastPositionClosed;
+		public static double getLastTradeProfit(this ISecurity source, int barIndex) {
+			IPosition lastPosition = source.Positions.GetLastPositionClosed(barIndex);
 
 			if (null == lastPosition) {
 				return -1;
@@ -43,8 +44,8 @@ namespace org.ontslab.data {
 			return lastPosition.Profit();
 		}
 		
-		public static Bar getLastEntryBar(this ISecurity source) {
-			IPosition lastPosition = source.Positions.LastPositionClosed;
+		public static IDataBar getLastEntryBar(this ISecurity source, int barIndex) {
+			IPosition lastPosition = source.Positions.GetLastPositionClosed(barIndex);
 
 			if (null == lastPosition) {
 				return null;
@@ -53,8 +54,8 @@ namespace org.ontslab.data {
 			return lastPosition.EntryBar;
 		}
 
-		public static int getLastEntryBarNum(this ISecurity source) {
-			IPosition lastPosition = source.Positions.LastPositionClosed;
+		public static int getLastEntryBarNum(this ISecurity source, int barIndex) {
+			IPosition lastPosition = source.Positions.GetLastPositionClosed(barIndex);
 
 			if (null == lastPosition) {
 				return -1;

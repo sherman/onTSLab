@@ -43,7 +43,9 @@ namespace org.ontslab.testing {
 		}
 		
 		public PnLReport draw(IContext context) {
-			IPane profitPane = context.CreatePane("Profit", 20.0, true);
+			var profitPane = context.CreateGraphPane("Profit", "Profit");
+			profitPane.SizePct = 20.0;
+			profitPane.HideLegend = true;
 			
 			if (null != profitSource) {
 				profitPane.AddList(
@@ -52,7 +54,7 @@ namespace org.ontslab.testing {
 					ListStyles.HISTOHRAM,
 					0x336699,
 					LineStyles.SOLID,
-					PaneSides.VSIDE_LAST
+					PaneSides.LEFT
 				);
 			}
 			
@@ -63,7 +65,7 @@ namespace org.ontslab.testing {
 					ListStyles.HISTOHRAM,
 					0xff00000,
 					LineStyles.SOLID,
-					PaneSides.VSIDE_LAST
+					PaneSides.LEFT
 				);
 			}
 			

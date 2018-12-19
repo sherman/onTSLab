@@ -15,6 +15,7 @@ using NUnit.Mocks;
 using org.ontslab.trading.handlers;
 using org.ontslab.misc;
 using org.ontslab.analytic;
+using TSLab.DataSource;
 using TSLab.Script;
 
 // FIXME: fix tests
@@ -45,8 +46,7 @@ namespace org.ontslab.test.trading.handlers {
 		
 		[Test]
 		public void testHandleBar() {
-			Bar expectedExitBar = new Bar(
-				0x000000,
+			IDateBar expectedExitBar = new DataBar(
 				new DateTime(2011, 2, 1),
 				100,
 				105,
@@ -56,7 +56,7 @@ namespace org.ontslab.test.trading.handlers {
 			);
 			positionMock.SetReturnValue("get_ExitBar", expectedExitBar);
 			
-			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
+			IDataBar bar = new DataBar(new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
 			ProfitPerPeriod<Month> pnl = AnalyticTools.profitPerMonth((ISecurity)sourceMock.MockInstance);
 			
 			Assert.AreEqual(expectedExitBar, pnl.getLastExitBar());
@@ -64,8 +64,7 @@ namespace org.ontslab.test.trading.handlers {
 		
 		[Test]
 		public void testGetProfitPerList() {
-			Bar expectedExitBar = new Bar(
-				0x000000,
+			IDataBar expectedExitBar = new DataBar(
 				new DateTime(2011, 2, 1),
 				100,
 				105,
@@ -76,7 +75,7 @@ namespace org.ontslab.test.trading.handlers {
 			positionMock.SetReturnValue("get_ExitBar", expectedExitBar);
 			positionMock.ExpectAndReturn("Profit", 100.0);
 			
-			Bar bar = new Bar(0x000000, new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
+			IDataBar bar = new DataBar(new DateTime(2011, 2, 2), 100, 105, 102, 103, 1);
 			ProfitPerPeriod<Month> pnl = AnalyticTools.profitPerMonth((ISecurity)sourceMock.MockInstance);
 			
 			List<double> actual = pnl.getProfitPerPeriodList();

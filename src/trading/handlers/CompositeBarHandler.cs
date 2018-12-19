@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using TSLab.DataSource;
 using TSLab.Script;
 
 namespace org.ontslab.trading.handlers
@@ -27,7 +28,7 @@ namespace org.ontslab.trading.handlers
 			return this;
 		}
 		
-		public void handleBar(Bar bar) {
+		public void handleBar(IDataBar bar) {
 			foreach (BarHandler handler in handlers) {
 				handler.handleBar(bar);
 			}

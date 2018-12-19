@@ -28,14 +28,16 @@ namespace org.ontslab.testing
 		
 		public void draw(IContext context) {
 			ISecurity baseSource = source.getBaseSource();
-			IDictionary<int, Trade> trades = source.getBarIndexedTrades();
+			IDictionary<DateTime, Trade> trades = source.getBarIndexedTrades();
 			
 			IList<double> losses = new List<double>(baseSource.Bars.Count);
 			IList<double> wins = new List<double>(baseSource.Bars.Count);
 			
-			for (int i = 0; i < baseSource.Bars.Count; i++) {
-				if (trades.ContainsKey(i)) {
-					if (trades[i].getProfit() > 0) {
+			for (var i = 0; i < baseSource.Bars.Count; i++) {
+				var currentBar = baseSource.Bars[i];
+				
+				if (trades.ContainsKey(currentBar.Date)) {
+					if (trades[currentBar.Date].getProfit() > 0) {
 						wins.Add(1);
 						losses.Add(0);
 					} else {
@@ -47,8 +49,9 @@ namespace org.ontslab.testing
 					losses.Add(0);
 				}
 			}
-			
-			IPane tradesPanel = context.CreatePane("Trades", 10.0, true);
+
+			var tradesPanel = context.CreateGraphPane("Trades", "Trades");
+			tradesPanel.SizePct = 10.0;
 			
 			tradesPanel.AddList(
 				"Win trades",
@@ -56,7 +59,7 @@ namespace org.ontslab.testing
 				ListStyles.HISTOHRAM,
 				0x00ff00,
 				LineStyles.SOLID,
-				PaneSides.VSIDE_LAST
+				PaneSides.LEFT
 			);
 			
 			tradesPanel.AddList(
@@ -65,7 +68,7 @@ namespace org.ontslab.testing
 				ListStyles.HISTOHRAM,
 				0xff0000,
 				LineStyles.SOLID,
-				PaneSides.VSIDE_LAST
+				PaneSides.LEFT
 			);
 		}
 	}

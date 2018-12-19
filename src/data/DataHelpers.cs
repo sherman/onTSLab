@@ -37,7 +37,7 @@ namespace org.ontslab.data {
 			);
 		}
 
-		public static IList<double> generateATR(IContext ctx, IList<Bar> data, int period) {
+		public static IList<double> generateATR(IContext ctx, IReadOnlyList<IDataBar> data, int period) {
 			return ctx.GetData(
 				"ATR" + period.ToString(),
 				new[] {period.ToString()}, delegate {

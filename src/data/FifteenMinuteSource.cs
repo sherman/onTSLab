@@ -20,7 +20,7 @@ namespace org.ontslab.data {
             createFifteenMinutesSourceFrom(original);
         }
 		
-        public FifteenMinuteSource(IList<Bar> original) {
+        public FifteenMinuteSource(IList<IDataBar> original) {
             createCompressedSourceFrom(original);
         }
         
@@ -34,11 +34,11 @@ namespace org.ontslab.data {
                 new TSLab.DataSource.Interval(15, DataIntervals.MINUTE)
             );
 			
-            IDictionary<string, Bar> newSourceBars =
-                new Dictionary<string, Bar>(fifteenMinutesSource.Bars.Count);
+            IDictionary<string, IDataBar> newSourceBars =
+                new Dictionary<string, IDataBar>(fifteenMinutesSource.Bars.Count);
 			
             // convert to source bars
-            foreach (Bar bar in fifteenMinutesSource.Bars) {
+            foreach (IDataBar bar in fifteenMinutesSource.Bars) {
                 var key = period.keyFromTime(bar.Date);
 				
                 if (!newSourceBars.ContainsKey(key)) {

@@ -11,20 +11,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TSLab.Script;
-using org.ontslab.misc;
+using TSLab.DataSource;
+using Interval = org.ontslab.misc.Interval;
 
 namespace org.ontslab.data {
 	/// <summary>
 	/// Description of BaseCompressedSource.
 	/// </summary>
 	public abstract class BaseCompressedSource<T>  : CompressedSource where T : Interval, new() {
-		protected IDictionary<string, Bar> compressedSource;
+		protected IDictionary<string, IDataBar> compressedSource;
 		protected DateTime first;
 		protected DateTime last;
 		protected T period = new T();
 		
-		protected void createCompressedSourceFrom(IList<Bar> source) {
-			compressedSource = new Dictionary<string, Bar>(source.Count);
+		protected void createCompressedSourceFrom(IList<IDataBar> source) {
+			compressedSource = new Dictionary<string, IDataBar>(source.Count);
 			
 			source.ToList().ForEach(
 				bar => compressedSource.Add(period.keyFromTime(bar.Date), bar)
@@ -34,11 +35,11 @@ namespace org.ontslab.data {
 			last = source.Last().Date;
 		}
 		
-		public Bar getBar(DateTime date) {
+		public IDataBar getBar(DateTime date) {
 			return compressedSource[period.keyFromTime(date)];
 		}
 		
-		public Bar getPreviousBar(DateTime date) {
+		public IDataBar getPreviousBar(DateTime date) {
 			string previousBarKey = null;
 			
 			DateTime startBarDate = date;
@@ -58,7 +59,7 @@ namespace org.ontslab.data {
 				return null;
 		}
 		
-		public Bar getNextBar(DateTime date) {
+		public IDataBar getNextBar(DateTime date) {
 			string nextBarKey = null;
 			
 			DateTime startBarDate = date;
@@ -78,7 +79,7 @@ namespace org.ontslab.data {
 				return null;
 		}
 
-		public IList<Bar> getBars() {
+		public IList<IDataBar> getBars() {
 			return compressedSource.Values.ToList();
 		}
 	}

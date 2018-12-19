@@ -12,7 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TSLab.Script;
-using org.ontslab.misc;
+using TSLab.DataSource;
+using Interval = org.ontslab.misc.Interval;
 
 namespace org.ontslab.analytic {
 	/// <summary>
@@ -31,11 +32,11 @@ namespace org.ontslab.analytic {
 		
 		private bool fetched = false;
 		
-		private Bar lastExit;
+		private IDataBar lastExit;
 		
 		public MaxLossPerPeriod(ISecurity source) { this.source = source; }
 		
-		public Bar getLastExitBar() {
+		public IDataBar getLastExitBar() {
 			if (!fetched) {
 				fetch();
 			}

@@ -9,6 +9,7 @@
 ***************************************************************************/
 
 using System;
+using TSLab.DataSource;
 using TSLab.Script;
 
 namespace org.ontslab.trading.handlers
@@ -17,6 +18,6 @@ namespace org.ontslab.trading.handlers
 	/// Description of BarHandler.
 	/// </summary>
 	public interface BarHandler {
-		void handleBar(Bar bar);
+		void handleBar(IDataBar bar);
 	}
 }

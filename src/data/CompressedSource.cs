@@ -10,15 +10,16 @@
 using System;
 using TSLab.Script;
 using System.Collections.Generic;
+using TSLab.DataSource;
 
 namespace org.ontslab.data {
 	/// <summary>
 	/// Description of CompressedSource.
 	/// </summary>
 	public interface CompressedSource {
-		Bar getBar(DateTime date);
-		Bar getPreviousBar(DateTime date);
-		Bar getNextBar(DateTime date);
-		IList<Bar> getBars();
+		IDataBar getBar(DateTime date);
+		IDataBar getPreviousBar(DateTime date);
+		IDataBar getNextBar(DateTime date);
+		IList<IDataBar> getBars();
 	}
 }

@@ -9,6 +9,7 @@
 ***************************************************************************/
 
 using System;
+using TSLab.DataSource;
 using TSLab.Script;
 
 namespace org.ontslab.trading.handlers {
@@ -21,7 +22,7 @@ namespace org.ontslab.trading.handlers {
 	
 	public class BalanceBarHandler : BarHandler {
 		private double balance = 0.0;
-		private Bar lastBar;
+		private IDataBar lastBar;
 		private ISecurity source;
 		private ProfitConvertion method;
 		
@@ -29,8 +30,8 @@ namespace org.ontslab.trading.handlers {
 			this.source = source;
 		}
 		
-		public void handleBar(Bar bar) {
-			IPosition previousPosition = source.Positions.LastPositionClosed;
+		public void handleBar(IDataBar bar) {
+			IPosition previousPosition = source.Positions.GetLastPositionClosed(0);
 			
 			if (previousPosition != null && (lastBar == null || !previousPosition.ExitBar.Equals(lastBar))) {
 				if (null != method) {

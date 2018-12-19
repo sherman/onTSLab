@@ -23,7 +23,7 @@ namespace org.ontslab.data {
 			createDailySourceFrom(original);
 		}
 		
-		public DailySource(IList<Bar> original) {
+		public DailySource(IList<IDataBar> original) {
 			createCompressedSourceFrom(original);
 		}
 		
@@ -32,8 +32,8 @@ namespace org.ontslab.data {
 				new TSLab.DataSource.Interval(1, DataIntervals.DAYS)
 			);
 			
-			IDictionary<string, Bar> newSourceBars =
-				new Dictionary<string, Bar>(daySource.Bars.Count);
+			IDictionary<string, IDataBar> newSourceBars =
+				new Dictionary<string, IDataBar>(daySource.Bars.Count);
 			
 			// convert to source bars
 			int day = original.Bars[0].Date.Day;

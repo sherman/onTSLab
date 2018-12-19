@@ -23,7 +23,7 @@ namespace org.ontslab.data {
 			createHourlySourceFrom(original);
 		}
 		
-		public HourlySource(IList<Bar> original) {
+		public HourlySource(IList<IDataBar> original) {
 			createCompressedSourceFrom(original);
 		}
 		
@@ -32,8 +32,8 @@ namespace org.ontslab.data {
 				new TSLab.DataSource.Interval(60, DataIntervals.MINUTE)
 			);
 			
-			IDictionary<string, Bar> newSourceBars =
-				new Dictionary<string, Bar>(hourSource.Bars.Count);
+			IDictionary<string, IDataBar> newSourceBars =
+				new Dictionary<string, IDataBar>(hourSource.Bars.Count);
 			
 			// convert to source bars
 			int hour = original.Bars[0].Date.Hour;

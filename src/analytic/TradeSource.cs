@@ -45,26 +45,22 @@ namespace org.ontslab.analytic
 			return trades;
 		}
 		
-		public IDictionary<int, Trade> getBarIndexedTrades() {
+		public IDictionary<DateTime, Trade> getBarIndexedTrades() {
 			if (!fetched) {
 				fetch();
 			}
 			
-			IDictionary<int, Trade> barIndexedTrades = new Dictionary<int, Trade>();
+			IDictionary<DateTime, Trade> barIndexedTrades = new Dictionary<DateTime, Trade>();
 			
+			// TODO: use source.GetTrades(fromBar, toBar) ?
 			// TODO: add ability to store multiple trades for one bar
-			trades.ForEach(
-				trade => {
-					int barIndex = source.Bars.IndexOf(trade.getEntry());
-					
-					if (!barIndexedTrades.ContainsKey(barIndex)) {
-						barIndexedTrades.Add(
-							source.Bars.IndexOf(trade.getEntry()),
-							trade
-						);
-					}
+			foreach (var trade in trades) {
+				var dt = trade.getEntry().Date;
+				
+				if (!barIndexedTrades.ContainsKey(dt)) {
+					barIndexedTrades.Add(dt, trade);
 				}
-			);
+			}
 			
 			return barIndexedTrades;
 		}
