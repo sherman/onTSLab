@@ -21,7 +21,7 @@ using TSLab.Script;
 // FIXME: fix tests
 namespace org.ontslab.test.trading.handlers {
 	[TestFixture]
-	[Ignore]
+	[Ignore("fixme")]
 	public class ProfitPerMonthTest {
 		private DynamicMock sourceMock;
 		private DynamicMock positionMock;

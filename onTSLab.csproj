@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props')" />
   <PropertyGroup>
     <ProjectGuid>{805C3303-9128-4CFE-AC80-E4E4B4EEE625}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,13 +33,23 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\..\nunit\bin\net-2.0\framework\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\StatV1Calc\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.mocks">
-      <HintPath>..\..\..\..\nunit\bin\net-2.0\framework\nunit.mocks.dll</HintPath>
+    <Reference Include="nunit.mocks, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <HintPath>..\StatV1Calc\packages\NUnit.Mocks.2.6.4\lib\nunit.mocks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -121,9 +132,16 @@
     <None Include="doc\README" />
     <None Include="doc\THANKS" />
     <None Include="examples\AnalyticTools.txt" />
+    <None Include="packages.config" />
     <None Include="test\resources\azhuravlev.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\trading\algorithms\" />
   </ItemGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props'))" />
+  </Target>
 </Project>
