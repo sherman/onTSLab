@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('packages\NUnit.3.11.0\build\NUnit.props')" />
   <Import Project="..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props')" />
   <PropertyGroup>
     <ProjectGuid>{805C3303-9128-4CFE-AC80-E4E4B4EEE625}</ProjectGuid>
@@ -44,11 +45,11 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-      <HintPath>..\StatV1Calc\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+      <HintPath>packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.mocks, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
-      <HintPath>..\StatV1Calc\packages\NUnit.Mocks.2.6.4\lib\nunit.mocks.dll</HintPath>
+      <HintPath>packages\NUnit.Mocks.2.6.4\lib\nunit.mocks.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -143,5 +144,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit.3.11.0\build\NUnit.props'))" />
   </Target>
 </Project>
