@@ -21,5 +21,6 @@ namespace org.ontslab.data {
 		IDataBar getPreviousBar(DateTime date);
 		IDataBar getNextBar(DateTime date);
 		IList<IDataBar> getBars();
+		IReadOnlyList<IDataBar> getBarsAsReadonly();
 	}
 }

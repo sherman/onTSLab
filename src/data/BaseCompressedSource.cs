@@ -82,5 +82,9 @@ namespace org.ontslab.data {
 		public IList<IDataBar> getBars() {
 			return compressedSource.Values.ToList();
 		}
+
+		public IReadOnlyList<IDataBar> getBarsAsReadonly() {
+			return compressedSource.Values.ToList().AsReadOnly();
+		}
 	}
 }
