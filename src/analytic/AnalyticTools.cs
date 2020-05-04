@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Sherminator
- * Date: 08.04.2011
- * Time: 23:39
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 /***************************************************************************
 *   Copyright (C) 2011 by Denis M. Gabaydulin                             *
 *                                                                         *
@@ -39,6 +31,10 @@ namespace org.ontslab.analytic {
 		
 		public static MaxLossPerPeriod<Month> maxLossPerMonth(ISecurity source) {
 			return new MaxLossPerPeriod<Month>(source);
+		}
+
+		public static ZStatistic zStatistic(ISecurity source) {
+			return new ZStatistic(source);
 		}
 	}
 }

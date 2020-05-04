@@ -59,13 +59,13 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TSLab.DataSource, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="TSLab.DataSource, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\TSLab 2.0\TSLab.DataSource.dll</HintPath>
     </Reference>
     <Reference Include="TSLab.Script, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
     </Reference>
-    <Reference Include="TSLab.Script, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="TSLab.Script, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -75,6 +75,7 @@
     <Compile Include="src\analytic\ProfitPerPeriod.cs" />
     <Compile Include="src\analytic\Trade.cs" />
     <Compile Include="src\analytic\TradeSource.cs" />
+    <Compile Include="src\analytic\ZStatistic.cs" />
     <Compile Include="src\bpi\Trade.cs" />
     <Compile Include="src\data\BaseCompressedSource.cs" />
     <Compile Include="src\data\CompressedSource.cs" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\trading\algorithms\" />
+    <Folder Include="test\analytics" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
