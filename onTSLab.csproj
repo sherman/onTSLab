@@ -79,6 +79,7 @@
     <Compile Include="src\bpi\Trade.cs" />
     <Compile Include="src\data\BaseCompressedSource.cs" />
     <Compile Include="src\data\CompressedSource.cs" />
+    <Compile Include="src\data\CustomDailySource.cs" />
     <Compile Include="src\data\DailySource.cs" />
     <Compile Include="src\data\DataHelpers.cs" />
     <Compile Include="src\data\DataUtils.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="src\util\HttpUtils.cs" />
     <Compile Include="src\util\LimitedQueue.cs" />
     <Compile Include="src\util\StringUtils.cs" />
+    <Compile Include="test\data\CustomDailySourceTest.cs" />
     <Compile Include="test\data\DailySourceTest.cs" />
     <Compile Include="test\data\DataHelpersTest.cs" />
     <Compile Include="test\data\HourlySourceTest.cs" />
