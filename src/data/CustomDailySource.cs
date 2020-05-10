@@ -22,6 +22,9 @@ namespace org.ontslab.data {
             _original = original;
             _skipBars = skipBars;
             Create();
+
+            first = original[0];
+            last = original[original.Count - 1];
         }
 
         private IDataBar CreateDayBar(IList<IDataBar> bars) {
@@ -57,11 +60,11 @@ namespace org.ontslab.data {
                     if (bars.Count > _skipBars) {
                         var dayBar = CreateDayBar(bars);
                         _newSourceBars.Add(period.keyFromTime(dayBar.Date), dayBar);
-                        if (first == null) {
+                        /*if (first == null) {
                             first = dayBar;
                         }
 
-                        last = dayBar;
+                        last = dayBar;*/
                     }
 
                     dt = period.keyFromTime(currentBar.Date);
@@ -76,11 +79,11 @@ namespace org.ontslab.data {
             if (bars.Count > _skipBars) {
                 var dayBar = CreateDayBar(bars);
                 _newSourceBars.Add(period.keyFromTime(dayBar.Date), dayBar);
-                if (first == null) {
+                /*if (first == null) {
                     first = dayBar;
                 }
 
-                last = dayBar;
+                last = dayBar;*/
             }
         }
 
@@ -96,6 +99,7 @@ namespace org.ontslab.data {
             string previousBarKey;
 
             var startBarDate = dateTime;
+            var counter = 0;
 
             do {
                 startBarDate = startBarDate.Subtract(period.getTimeSpan());
@@ -103,6 +107,10 @@ namespace org.ontslab.data {
 
                 if (_newSourceBars.ContainsKey(previousBarKey)) {
                     return _newSourceBars[previousBarKey];
+                }
+
+                if (++counter > _newSourceBars.Count * 10) {
+                    Assert.Fail("Too many loops, error in the logic?");
                 }
             } while (startBarDate >= first.Date);
 
@@ -112,8 +120,9 @@ namespace org.ontslab.data {
         public IDataBar GetNextBar(DateTime dateTime) {
             string nextBarKey;
 
-            DateTime startBarDate = dateTime;
+            var startBarDate = dateTime;
 
+            var counter = 0;
             do {
                 startBarDate = startBarDate.Add(period.getTimeSpan());
                 nextBarKey = period.keyFromTime(startBarDate);
@@ -121,8 +130,11 @@ namespace org.ontslab.data {
                 if (_newSourceBars.ContainsKey(nextBarKey)) {
                     return _newSourceBars[nextBarKey];
                 }
-            } while (startBarDate <= last.Date);
 
+                if (++counter > _newSourceBars.Count * 10) {
+                    Assert.Fail("Too many loops, error in the logic?");
+                }
+            } while (startBarDate <= last.Date);
 
             return null;
         }

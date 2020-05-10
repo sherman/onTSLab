@@ -187,6 +187,23 @@ namespace org.ontslab.test.data {
                 expected.ToString(),
                 source.GetNextBar(new DateTime(2020, 1, 1)).ToString()
             );
-        } 
+        }
+
+        [Test]
+        public void CheckInfiniteLoops() {
+            var source = new CustomDailySource(
+                new List<IDataBar> {
+                    {new DataBar(new DateTime(2020, 1, 1, 10, 0, 0), 100, 105, 99, 99, 1)},
+                    {new DataBar(new DateTime(2020, 1, 1, 10, 1, 0), 102, 106, 101, 107, 1)},
+                    {new DataBar(new DateTime(2020, 1, 1, 10, 2, 0), 108, 108, 106, 107, 1)},
+                    {new DataBar(new DateTime(2020, 1, 1, 10, 3, 0), 99, 101, 84, 100, 21)},
+                    {new DataBar(new DateTime(2020, 1, 1, 10, 4, 0), 101, 102, 98, 101.5, 1)}
+                },
+                1
+            );
+
+            Assert.IsNull(source.GetNextBar(new DateTime(2020, 1, 1)));
+            Assert.IsNull(source.GetPrevBar(new DateTime(2020, 1, 1)));
+        }
     }
 }
