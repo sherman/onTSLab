@@ -20,8 +20,8 @@ namespace org.ontslab.data {
 	/// </summary>
 	public abstract class BaseCompressedSource<T>  : CompressedSource where T : Interval, new() {
 		protected IDictionary<string, IDataBar> compressedSource;
-		protected DateTime first;
-		protected DateTime last;
+		protected IDataBar first;
+		protected IDataBar last;
 		protected T period = new T();
 		
 		protected void createCompressedSourceFrom(IList<IDataBar> source) {
@@ -31,15 +31,15 @@ namespace org.ontslab.data {
 				bar => compressedSource.Add(period.keyFromTime(bar.Date), bar)
 			);
 			
-			first = source.First().Date;
-			last = source.Last().Date;
+			first = source.First();
+			last = source.Last();
 		}
 		
-		public IDataBar getBar(DateTime date) {
+		public IDataBar GetBar(DateTime date) {
 			return compressedSource[period.keyFromTime(date)];
 		}
 		
-		public IDataBar getPreviousBar(DateTime date) {
+		public IDataBar GetPrevBar(DateTime date) {
 			string previousBarKey = null;
 			
 			DateTime startBarDate = date;
@@ -51,7 +51,7 @@ namespace org.ontslab.data {
 				if (compressedSource.ContainsKey(previousBarKey)) {
 					break;
 				}
-			} while (startBarDate >= first);
+			} while (startBarDate >= first.Date);
 			
 			if (compressedSource.ContainsKey(previousBarKey))
 				return compressedSource[previousBarKey];
@@ -59,7 +59,7 @@ namespace org.ontslab.data {
 				return null;
 		}
 		
-		public IDataBar getNextBar(DateTime date) {
+		public IDataBar GetNextBar(DateTime date) {
 			string nextBarKey = null;
 			
 			DateTime startBarDate = date;
@@ -71,7 +71,7 @@ namespace org.ontslab.data {
 				if (compressedSource.ContainsKey(nextBarKey)) {
 					break;
 				}
-			} while (startBarDate <= last);
+			} while (startBarDate <= last.Date);
 			
 			if (compressedSource.ContainsKey(nextBarKey))
 				return compressedSource[nextBarKey];
@@ -79,12 +79,16 @@ namespace org.ontslab.data {
 				return null;
 		}
 
-		public IList<IDataBar> getBars() {
+		public IList<IDataBar> GetBars() {
 			return compressedSource.Values.ToList();
 		}
 
-		public IReadOnlyList<IDataBar> getBarsAsReadonly() {
+		public IReadOnlyList<IDataBar> GetBarsAsReadonly() {
 			return compressedSource.Values.ToList().AsReadOnly();
+		}
+
+		public IDataBar GetFirstBar() {
+			return first;
 		}
 	}
 }

@@ -39,7 +39,7 @@ namespace org.ontslab.test.data {
 			// Bar is not ValueObject :-/
 			Assert.AreEqual(
 				new DataBar(new DateTime(2011, 4, 15), 108, 108, 106, 107, 1).ToString(),
-				source.getBar(new DateTime(2011, 4, 15)).ToString()
+				source.GetBar(new DateTime(2011, 4, 15)).ToString()
 			);
 		}
 		
@@ -47,17 +47,17 @@ namespace org.ontslab.test.data {
 		public void testGetPreviousBar() {
 			Assert.AreEqual(
 				new DataBar(new DateTime(2011, 4, 15), 108, 108, 106, 107, 1).ToString(),
-				source.getPreviousBar(new DateTime(2011, 4, 18)).ToString()
+				source.GetPrevBar(new DateTime(2011, 4, 18)).ToString()
 			);
 			
 			Assert.AreEqual(
 				new DataBar(new DateTime(2011, 4, 14), 102, 106, 101, 107, 1).ToString(),
-				source.getPreviousBar(new DateTime(2011, 4, 15)).ToString()
+				source.GetPrevBar(new DateTime(2011, 4, 15)).ToString()
 			);
 			
 			Assert.AreEqual(
 				null,
-				source.getPreviousBar(new DateTime(2011, 4, 13))
+				source.GetPrevBar(new DateTime(2011, 4, 13))
 			);
 		}
 		
@@ -65,17 +65,17 @@ namespace org.ontslab.test.data {
 		public void testGetNextBar() {
 			Assert.AreEqual(
 				new DataBar(new DateTime(2011, 4, 18), 99, 101, 84, 100, 21).ToString(),
-				source.getNextBar(new DateTime(2011, 4, 15)).ToString()
+				source.GetNextBar(new DateTime(2011, 4, 15)).ToString()
 			);
 			
 			Assert.AreEqual(
 				new DataBar(new DateTime(2011, 4, 15), 108, 108, 106, 107, 1).ToString(),
-				source.getNextBar(new DateTime(2011, 4, 14)).ToString()
+				source.GetNextBar(new DateTime(2011, 4, 14)).ToString()
 			);
 			
 			Assert.AreEqual(
 				null,
-				source.getNextBar(new DateTime(2011, 4, 19))
+				source.GetNextBar(new DateTime(2011, 4, 19))
 			);
 		}
 	}

@@ -54,8 +54,8 @@ namespace org.ontslab.data {
 			}
 			
 			this.compressedSource = newSourceBars;
-			this.first = original.Bars[0].Date;
-			this.last = original.Bars[original.Bars.Count - 1].Date;
+			this.first = original.Bars[0];
+			this.last = original.Bars[original.Bars.Count - 1];
 		}
 	}
 }

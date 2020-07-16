@@ -7,20 +7,24 @@
 *   License, or (at your option) any later version.                       *
 *                                                                         *
 ***************************************************************************/
+
 using System;
-using TSLab.Script;
 using System.Collections.Generic;
 using TSLab.DataSource;
 
 namespace org.ontslab.data {
-	/// <summary>
-	/// Description of CompressedSource.
-	/// </summary>
-	public interface CompressedSource {
-		IDataBar getBar(DateTime date);
-		IDataBar getPreviousBar(DateTime date);
-		IDataBar getNextBar(DateTime date);
-		IList<IDataBar> getBars();
-		IReadOnlyList<IDataBar> getBarsAsReadonly();
-	}
+    /// <summary>
+    /// Description of CompressedSource.
+    /// </summary>
+    public interface CompressedSource {
+        IDataBar GetBar(DateTime date);
+        IDataBar GetPrevBar(DateTime date);
+        IDataBar GetNextBar(DateTime date);
+        IDataBar GetFirstBar();
+
+        IList<IDataBar> GetBars();
+
+        // Deprecated
+        IReadOnlyList<IDataBar> GetBarsAsReadonly();
+    }
 }

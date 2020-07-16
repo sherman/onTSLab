@@ -7,7 +7,7 @@ using TSLab.DataSource;
 using TSLab.Script;
 
 namespace org.ontslab.data {
-    public class CustomDailySource {
+    public class CustomDailySource : CompressedSource {
         private readonly IReadOnlyList<IDataBar> _original;
         private readonly int _skipBars;
         private readonly IDictionary<string, IDataBar> _newSourceBars = new Dictionary<string, IDataBar>();
@@ -68,7 +68,7 @@ namespace org.ontslab.data {
                     }
 
                     dt = period.keyFromTime(currentBar.Date);
-                    bars.Clear();
+                    bars.Clear();    
                     bars.Add(currentBar);
                 }
                 else {
@@ -88,6 +88,10 @@ namespace org.ontslab.data {
         }
 
         public IList<IDataBar> GetBars() {
+            return _newSourceBars.Values.ToList();
+        }
+
+        public IReadOnlyList<IDataBar> GetBarsAsReadonly() {
             return _newSourceBars.Values.ToList();
         }
 
