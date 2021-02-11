@@ -13,7 +13,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Sherminator\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -54,19 +55,22 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <RequiredTargetFramework>4.7.2</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <RequiredTargetFramework>4.7.2</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TSLab.DataSource, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\TSLab 2.0\TSLab.DataSource.dll</HintPath>
+    <Reference Include="TSLab.DataSource, Version=2.1.12.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.1\TSLab.DataSource.dll</HintPath>
     </Reference>
-    <Reference Include="TSLab.Script, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
+    <Reference Include="TSLab.Script, Version=2.1.12.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.1\TSLab.Script.dll</HintPath>
     </Reference>
-    <Reference Include="TSLab.Script, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
+    <Reference Include="TSLab.Script.Handlers, Version=2.1.12.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.1\TSLab.Script.Handlers.dll</HintPath>
+    </Reference>
+    <Reference Include="TSLab.Utility, Version=2.1.12.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.1\TSLab.Utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -147,7 +151,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\StatV1Calc\packages\NUnit.3.11.0\build\NUnit.props'))" />
     <Error Condition="!Exists('packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit.3.11.0\build\NUnit.props'))" />
   </Target>
 </Project>
