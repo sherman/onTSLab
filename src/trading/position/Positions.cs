@@ -16,7 +16,7 @@ namespace org.ontslab.trading.position {
 	/// Description of Positions.
 	/// </summary>
 	public static class Positions {
-		public static FixedSizePositionCalculator fixedSize(double size) {
+		public static FixedSizePositionCalculator fixedSize(int size) {
 			return new FixedSizePositionCalculator(size);
 		}
 		

@@ -15,9 +15,9 @@ namespace org.ontslab.trading.position {
 	/// Description of PercentOfBalanceBasedPositionCalculator.
 	/// </summary>
 	public class PercentOfBalanceBasedPositionCalculator : PositionCalculator {
-		private double percent;
-		private double currentBalance;
-		private double maxLoss;
+		private readonly double percent;
+		private readonly double currentBalance;
+		private readonly double maxLoss;
 		
 		public PercentOfBalanceBasedPositionCalculator(
 			double percent,
@@ -29,8 +29,13 @@ namespace org.ontslab.trading.position {
 			this.maxLoss = maxLoss;
 		}
 		
-		public double getPositionSize() {
-			return Math.Floor(currentBalance * percent / maxLoss);
+		public int getPositionSize() {
+			var res = Math.Floor(currentBalance * percent / maxLoss);
+			if (double.NaN.Equals(res) || double.IsInfinity(res)) {
+				return 1;
+			}
+
+			return Convert.ToInt32(res);
 		}
 	}
 }

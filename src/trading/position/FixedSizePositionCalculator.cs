@@ -15,11 +15,11 @@ namespace org.ontslab.trading.position {
 	/// Description of FixedSizePositionCalculator.
 	/// </summary>
 	public class FixedSizePositionCalculator : PositionCalculator {
-		private double size;
+		private readonly int size;
 		
-		public FixedSizePositionCalculator(double size) { this.size = size; }
+		public FixedSizePositionCalculator(int size) { this.size = size; }
 		
-		public double getPositionSize() {
+		public int getPositionSize() {
 			return size;
 		}
 	}

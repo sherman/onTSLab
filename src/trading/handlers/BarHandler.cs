@@ -18,6 +18,6 @@ namespace org.ontslab.trading.handlers
 	/// Description of BarHandler.
 	/// </summary>
 	public interface BarHandler {
-		void handleBar(IDataBar bar);
+		void handleBar(IDataBar bar, int index);
 	}
 }

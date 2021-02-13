@@ -62,11 +62,14 @@
     <Reference Include="TSLab.DataSource, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\TSLab 2.0\TSLab.DataSource.dll</HintPath>
     </Reference>
-    <Reference Include="TSLab.Script, Version=2.0.32.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
-    </Reference>
     <Reference Include="TSLab.Script, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\TSLab 2.0\TSLab.Script.dll</HintPath>
+    </Reference>
+    <Reference Include="TSLab.Script.Handlers, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.0\TSLab.Script.Handlers.dll</HintPath>
+    </Reference>
+    <Reference Include="TSLab.Utility, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\TSLab 2.0\TSLab.Utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

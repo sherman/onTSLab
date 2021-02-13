@@ -15,9 +15,9 @@ namespace org.ontslab.trading.position
 	/// Description of LeverageBasedPositionCalculator.
 	/// </summary>
 	public class LeverageBasedPositionCalculator : PositionCalculator {
-		private double maxLeverage;
-		private double currentBalance;
-		private double price;
+		private readonly double maxLeverage;
+		private readonly double currentBalance;
+		private readonly double price;
 		
 		public LeverageBasedPositionCalculator(
 			double maxLeverage,
@@ -29,8 +29,13 @@ namespace org.ontslab.trading.position
 			this.price = price;
 		}
 		
-		public double getPositionSize() {
-			return Math.Floor(currentBalance * maxLeverage / price);
+		public int getPositionSize() {
+			var res = Math.Floor(currentBalance * maxLeverage / price);
+			if (double.NaN.Equals(res) || double.IsInfinity(res)) {
+				return 1;
+			}
+
+			return Convert.ToInt32(res);
 		}
 	}
 }

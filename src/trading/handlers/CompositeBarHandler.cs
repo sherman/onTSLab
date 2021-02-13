@@ -28,9 +28,9 @@ namespace org.ontslab.trading.handlers
 			return this;
 		}
 		
-		public void handleBar(IDataBar bar) {
+		public void handleBar(IDataBar bar, int index) {
 			foreach (BarHandler handler in handlers) {
-				handler.handleBar(bar);
+				handler.handleBar(bar, index);
 			}
 		}
 	}

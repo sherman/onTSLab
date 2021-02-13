@@ -15,6 +15,6 @@ namespace org.ontslab.trading.position {
 	/// Description of PositionCalculator.
 	/// </summary>
 	public interface PositionCalculator {
-		double getPositionSize();
+		int getPositionSize();
 	}
 }
